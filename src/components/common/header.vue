@@ -2,10 +2,10 @@
   <div>
     <div class="header">
       <a-row>
-        <a-col :span="6" class="clos">
+        <a-col :span="4" class="clos">
           <span class="logoName">海超</span>
         </a-col>
-        <a-col :span="18" class="clos">
+        <a-col :span="20" class="clos">
           <a-row>
             <a-col :span="6" >
               <a-input placeholder="搜索文章" v-model="userName" ref="userNameInput" class = "lineHeight">

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <a-row :style="{ width: '100%' }">
-      <a-col :span="4" class="siedebar">
+      <a-col :span="5" class="siedebar">
         <div style="border-right: 1px solid #e8e8e8; padding-bottom: 20px">
           <a-avatar :size="132" icon="user"/>
           <h4 class="title">{{ currentName }}</h4>
@@ -19,17 +19,19 @@
         </div>
         <div class="article">
           <a-divider orientation="left">最近文章</a-divider>
-          <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
-          <p>4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Refert tamen, quo modo.</p>
+          <ul>
+            <li>1.<a>Lorem ipsum dolor</a></li>
+            <li>2.<a>Lorem ipLorem ipLorem ipsum dolor</a></li>
+            <li>3.<a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a></li>
+            <li>4.<a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a></li>
+            <li>5.<a>Lorem ipsum dolor</a></li>
+            <li>6.<a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a></li>
+            <li>7.<a>Lorem ipsum dolor</a></li>
+            <li>8.<a>LoremLorem ipLorem ipLorem ip ipsum dolor</a></li>
+            <li>9.<a>Lorem ipsum dolor</a></li>
+          </ul>
         </div>
-        <div style="padding-top: 26px; margin-bottom: 30px">
+        <div style="padding-top: 26px; margin-bottom: 30px; border-right: 1px solid #e8e8e8; ">
           <a-divider orientation="left">标签</a-divider>
           <a-tag class="atips" color="pink">pink</a-tag>
           <a-tag class="atips" color="red">red</a-tag>
@@ -47,7 +49,7 @@
           <a-tag class="atips" color="purple">purple</a-tag>
         </div>
       </a-col>
-      <a-col :span="20" class="scroll">
+      <a-col :span="19" class="scroll">
         <router-view></router-view>
       </a-col>
     </a-row>
@@ -60,7 +62,7 @@ export default {
   data() {
     return {
       currentName: "海超",
-      tips: "解释解释解释解释解释解释"
+      tips: "前端小白一枚，还在学习当中～"
     };
   }
 };
@@ -126,12 +128,17 @@ export default {
 .article {
   border-right: 1px solid #e8e8e8;
 }
-.article p {
+.article li {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* padding-left: 30px; */
+  padding-right: 24px;
   box-sizing: border-box;
+  text-align: left;
+  line-height: 28px;
+}
+.article ul {
+  padding-left: 12px;
 }
 </style>

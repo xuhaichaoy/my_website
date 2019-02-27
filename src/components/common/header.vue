@@ -2,10 +2,10 @@
   <div>
     <div class="header">
       <a-row>
-        <a-col :span="4" class="clos">
-          <span class="logoName">海超</span>
+        <a-col :span="5" class="clos">
+          <span class="logoName">海超的博客</span>
         </a-col>
-        <a-col :span="20" class="clos">
+        <a-col :span="19" class="clos">
           <a-row>
             <a-col :span="6" >
               <a-input placeholder="搜索文章" v-model="userName" ref="userNameInput" class = "lineHeight">
@@ -13,8 +13,8 @@
                 <a-icon v-if="userName" slot="suffix" type="close-circle" @click="emitEmpty"/>
               </a-input>
             </a-col>
-            <a-col :span="12" >
-              <a-menu v-model="current" mode="horizontal" class = "lineHeight">
+            <a-col :span="12" class = "menu">
+              <a-menu v-model="current" mode="horizontal" class = "lineHeight" @select="pushmenu">
                 <a-menu-item key="index">
                   <a-icon type="home" />首页
                 </a-menu-item>
@@ -54,6 +54,11 @@ export default {
     emitEmpty() {
       this.$refs.userNameInput.focus();
       this.userName = "";
+    },
+    pushmenu(item) {
+      this.$router.push({
+        path: '/' + item.key
+      })
     }
   }
 };
@@ -100,5 +105,8 @@ export default {
 }
 .divider {
   display: inline-block;
+}
+.menu {
+  text-align: right;
 }
 </style>

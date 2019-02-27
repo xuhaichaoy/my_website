@@ -2,19 +2,15 @@
   <div>
     <div class="header">
       <a-row>
-        <a-col :span="5" class="clos">
+        <a-col :span="4" class="clos">
           <span class="logoName">海超的博客</span>
         </a-col>
-        <a-col :span="19" class="clos">
+        <a-col class="clos" :span="20">
           <a-row>
-            <a-col :span="6">
-              <a-input-search
-                placeholder="搜索文章"
-                style="width: 200px"
-                @search="onSearch"
-              />
+            <a-col :xs="0" :sm="0" :md="0" :lg="0" :xl="6">
+              <a-input-search placeholder="搜索文章" style="width: 200px" @search="onSearch"/>
             </a-col>
-            <a-col :span="12" class="menu">
+            <a-col class="menu" :xs="0" :sm="14" :md="14" :lg="16" :xl="12">
               <a-menu v-model="current" mode="horizontal" class="lineHeight" @select="pushmenu">
                 <a-menu-item key="index">
                   <a-icon type="home"/>首页
@@ -30,7 +26,7 @@
                 </a-menu-item>
               </a-menu>
             </a-col>
-            <a-col :span="6">
+            <a-col :xs="0" :sm="10" :md="10" :lg="8" :xl="6">
               <a-button type="primary">登录</a-button>
               <a-button style="marginLeft: 20px">注册</a-button>
             </a-col>
@@ -50,11 +46,20 @@ export default {
       current: ["index"]
     };
   },
-  mounted() {},
+  watch: {
+    $route() {
+      var arr = []
+      arr.push(this.$route.path.substring(1))
+      this.current = arr
+    }
+  },
+  mounted () {
+    var arr = []
+    arr.push(this.$route.path.substring(1))
+    this.current = arr
+  },
   methods: {
-    onSearch() {
-      
-    },
+    onSearch() {},
     pushmenu(item) {
       this.$router.push({
         path: "/" + item.key

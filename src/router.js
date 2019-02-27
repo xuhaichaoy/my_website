@@ -5,6 +5,10 @@ import pageAbout from './components/page/about'
 
 export default [
     {
+        path: '/',
+        component: pageIndex
+    },
+    {
         path: '/index',
         component: pageIndex
     },

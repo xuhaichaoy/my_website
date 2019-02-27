@@ -1,90 +1,25 @@
 <template>
   <div class="contentRight">
-    <div class="card">
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-    </div>
-    <div class="sideMenu">
-      <a-divider orientation="left">预览</a-divider>
-      <ul>
-        <li>1.<a>Lorem ipsum dolor</a></li>
-        <li>2.<a>Lorem ipLorem ipLorem ipsum dolor</a></li>
-        <li>3.<a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a></li>
-        <li>4.<a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a></li>
-        <li>5.<a>Lorem ipsum dolor</a></li>
-        <li>6.<a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a></li>
-        <li>7.<a>Lorem ipsum dolor</a></li>
-        <li>8.<a>LoremLorem ipLorem ipLorem ip ipsum dolor</a></li>
-        <li>9.<a>Lorem ipsum dolor</a></li>
-      </ul>
-    </div>
+    <a-timeline style = "margin-left: 10px; text-align: left;margin-top: 10px">
+      <a-timeline-item color="red">
+        <a-icon slot="dot" type="clock-circle-o" style="fontSize: '16px'" />
+        Technical testing 2019-02-27
+      </a-timeline-item>
+      <a-timeline-item>Create a services site 2019-02-27</a-timeline-item>
+      <a-timeline-item>Solve initial network problems 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
+    </a-timeline>
   </div>
 </template>
-
 <script>
 export default {
   name: "HelloWorld",
@@ -99,10 +34,6 @@ export default {
 ul {
   list-style-type: none;
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 a {
   color: #42b983;
@@ -135,5 +66,10 @@ a {
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 28px;
+}
+@media screen and (max-width: 1600px) {
+  .card {
+    padding-right: 0!important;
+  }
 }
 </style>

@@ -52,36 +52,47 @@
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
         </div>
       </a-card>
-      <a-layout-footer style="text-align: center; background: white">Ant Design ©2018 Created by Ant UED</a-layout-footer>
+      <a-layout-footer
+        style="text-align: center; background: white"
+      >Ant Design ©2018 Created by Ant UED</a-layout-footer>
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
       <ul>
-        <li>1.
+        <li>
+          1.
           <a>Lorem ipsum dolor</a>
         </li>
-        <li>2.
+        <li>
+          2.
           <a>Lorem ipLorem ipLorem ipsum dolor</a>
         </li>
-        <li>3.
+        <li>
+          3.
           <a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a>
         </li>
-        <li>4.
+        <li>
+          4.
           <a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a>
         </li>
-        <li>5.
+        <li>
+          5.
           <a>Lorem ipsum dolor</a>
         </li>
-        <li>6.
+        <li>
+          6.
           <a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a>
         </li>
-        <li>7.
+        <li>
+          7.
           <a>Lorem ipsum dolor</a>
         </li>
-        <li>8.
+        <li>
+          8.
           <a>LoremLorem ipLorem ipLorem ip ipsum dolor</a>
         </li>
-        <li>9.
+        <li>
+          9.
           <a>Lorem ipsum dolor</a>
         </li>
       </ul>
@@ -146,5 +157,14 @@ a {
 }
 .cardBottom {
   font-size: 12px;
+}
+@media screen and (max-width: 1600px) {
+  .sideMenu {
+    display: none;
+    /* width: 0; */
+  }
+  .card {
+    padding-right: 0!important;
+  }
 }
 </style>

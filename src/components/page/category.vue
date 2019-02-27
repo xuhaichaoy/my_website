@@ -1,87 +1,31 @@
 <template>
   <div class="contentRight">
-    <div class="card">
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-      <a-card title="Card Title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-      </a-card>
-    </div>
-    <div class="sideMenu">
-      <a-divider orientation="left">预览</a-divider>
-      <ul>
-        <li>1.<a>Lorem ipsum dolor</a></li>
-        <li>2.<a>Lorem ipLorem ipLorem ipsum dolor</a></li>
-        <li>3.<a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a></li>
-        <li>4.<a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a></li>
-        <li>5.<a>Lorem ipsum dolor</a></li>
-        <li>6.<a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a></li>
-        <li>7.<a>Lorem ipsum dolor</a></li>
-        <li>8.<a>LoremLorem ipLorem ipLorem ip ipsum dolor</a></li>
-        <li>9.<a>Lorem ipsum dolor</a></li>
-      </ul>
-    </div>
+    <a-divider>Categories</a-divider>
+    <template>
+      <div style="margin-top: 40px;">
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="pink">pink</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="red">red</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="orange">orange</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="green">green</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="cyan">cyan</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="blue">blue</a-tag>
+        </a-badge>
+        <a-badge :count="99">
+          <a-tag style = "margin-left: 30px" color="purple">purple</a-tag>
+        </a-badge>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -110,30 +54,11 @@ a {
 .contentRight {
   width: 100%;
   overflow: hidden;
+  padding-right: 400px;
 }
-.card {
-  padding-right: 300px;
-}
-.cards {
-  margin-top: 10px;
-}
-.cards:hover {
-  background: rgb(238, 250, 254);
-}
-.sideMenu {
-  text-align: left;
-  width: 300px;
-  position: fixed;
-  top: 110px;
-  right: 0px;
-  padding-left: 10px;
-  padding-right: 30px;
-}
-.sideMenu > ul > li {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: 28px;
+@media screen and (max-width: 1600px) {
+  .contentRight {
+    padding-right: 0!important;
+  }
 }
 </style>

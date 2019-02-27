@@ -33,8 +33,8 @@
         </div>
         <div style="padding-top: 26px; margin-bottom: 30px; border-right: 1px solid #e8e8e8; ">
           <a-divider orientation="left">标签</a-divider>
-          <a-tag class="atips" color="pink">pink</a-tag>
-          <a-tag class="atips" color="red">red</a-tag>
+          <a-tag class="atips" color="pink">node</a-tag>
+          <a-tag class="atips" color="red">javascript</a-tag>
           <a-tag class="atips" color="orange">orange</a-tag>
           <a-tag class="atips" color="green">green</a-tag>
           <a-tag class="atips" color="cyan">cyan</a-tag>
@@ -112,11 +112,8 @@ export default {
 }
 .atips {
   display: inline-block;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  box-sizing: border-box;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 6px!important;
+  margin-bottom: 6px!important;
 }
 .scroll {
   height: calc(100vh - 105px);

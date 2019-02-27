@@ -1,7 +1,7 @@
 <template>
   <div class="contentRight">
     <div class="tps">
-      <a-avatar icon="user"/>
+      <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
       <span style="margin-left: 10px">{{ intru }}</span>
       <a-divider orientation="left">博客简介</a-divider>
       <p>本博客使用的技术为 Vue v3.4.0 + antd</p>
@@ -179,9 +179,9 @@ a {
   width: 100%;
   overflow: hidden;
   text-align: left;
-  padding-right: 400px;
+  padding-right: 300px;
 }
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   .contentRight {
     padding-right: 0!important;
   }

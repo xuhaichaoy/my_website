@@ -1,7 +1,7 @@
 <template>
   <div class="contentRight">
     <div class="card">
-      <a-card title="Koa使用指南" :hoverable="true" class="cards">
+      <a-card @click="detail(1)" title="Koa使用指南" :hoverable="true" class="cards" id="koa">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -18,7 +18,7 @@
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
         </div>
       </a-card>
-      <a-card title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+      <a-card @click="detail(2)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -35,7 +35,58 @@
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
         </div>
       </a-card>
-      <a-card title="为什么函数式组件需要引入 React " :hoverable="true" class="cards">
+      <a-card @click="detail(3)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+        <a href="#" slot="extra">more</a>
+        <p>card content</p>
+        <p>card content</p>
+        <p>card content</p>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message"/>
+          <span class="spans">23</span>
+          <a-divider type="vertical"/>
+          <a-icon type="tag"/>
+          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+          <a-divider type="vertical"/>
+          <a-icon type="folder"/>
+          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+        </div>
+      </a-card>
+      <a-card @click="detail(4)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+        <a href="#" slot="extra">more</a>
+        <p>card content</p>
+        <p>card content</p>
+        <p>card content</p>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message"/>
+          <span class="spans">23</span>
+          <a-divider type="vertical"/>
+          <a-icon type="tag"/>
+          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+          <a-divider type="vertical"/>
+          <a-icon type="folder"/>
+          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+        </div>
+      </a-card>
+      <a-card @click="detail(5)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+        <a href="#" slot="extra">more</a>
+        <p>card content</p>
+        <p>card content</p>
+        <p>card content</p>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message"/>
+          <span class="spans">23</span>
+          <a-divider type="vertical"/>
+          <a-icon type="tag"/>
+          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+          <a-divider type="vertical"/>
+          <a-icon type="folder"/>
+          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+        </div>
+      </a-card>
+      <a-card @click="detail(6)" title="为什么函数式组件需要引入 React " :hoverable="true" class="cards">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -58,54 +109,49 @@
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
-      <ul>
-        <li>
-          1.
-          <a>Lorem ipsum dolor</a>
-        </li>
-        <li>
-          2.
-          <a>Lorem ipLorem ipLorem ipsum dolor</a>
-        </li>
-        <li>
-          3.
-          <a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a>
-        </li>
-        <li>
-          4.
-          <a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a>
-        </li>
-        <li>
-          5.
-          <a>Lorem ipsum dolor</a>
-        </li>
-        <li>
-          6.
-          <a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a>
-        </li>
-        <li>
-          7.
-          <a>Lorem ipsum dolor</a>
-        </li>
-        <li>
-          8.
-          <a>LoremLorem ipLorem ipLorem ip ipsum dolor</a>
-        </li>
-        <li>
-          9.
-          <a>Lorem ipsum dolor</a>
-        </li>
-      </ul>
+      <a-anchor>
+        <a-anchor-link href="#koa" title="Basic demo"/>
+        <a-anchor-link href="#components-anchor-demo-static-anchor" title="Fixed demo"/>
+        <a-anchor-link href="#API" title="API">
+          <a-anchor-link href="#Anchor-Props" title="Anchor Props"/>
+          <a-anchor-link href="#Link-Props" title="Link Props"/>
+        </a-anchor-link>
+      </a-anchor>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "pageIndex",
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {};
+  },
+  mounted() {
+    this.$http
+      .get("/", {
+        params: {
+          // key: "value"
+        }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        alert("请求失败");
+      });
+  },
+  methods: {
+    detail(id) {
+      console.log(id)
+      this.$router.push({
+        path: "/article/" + id
+      });
+    }
+  },
 };
 </script>
 
@@ -158,13 +204,26 @@ a {
 .cardBottom {
   font-size: 12px;
 }
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   .sideMenu {
     display: none;
     /* width: 0; */
   }
   .card {
-    padding-right: 0!important;
+    padding-right: 0 !important;
   }
+}
+#components-back-top-demo-custom .ant-back-top {
+  bottom: 100px;
+}
+#components-back-top-demo-custom .ant-back-top-inner {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
 }
 </style>

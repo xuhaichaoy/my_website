@@ -2,6 +2,7 @@ import pageIndex from './components/page/index'
 import pageDoc from './components/page/doc'
 import pageCategory from './components/page/category'
 import pageAbout from './components/page/about'
+import pageDetail from './components/page/detail'
 
 export default [
     {
@@ -10,7 +11,7 @@ export default [
     },
     {
         path: '/index',
-        component: pageIndex
+        component: pageIndex,
     },
     {
         path: '/doc',
@@ -23,5 +24,9 @@ export default [
     {
         path: '/about',
         component: pageAbout
+    },
+    {
+        path: '/article/:id',
+        component: pageDetail
     }
 ]

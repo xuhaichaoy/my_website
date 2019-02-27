@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <a-row :style="{ width: '100%' }">
-      <a-col  class="siedebar" :xs="0" :sm="0" :md="0" :lg="5" :xl="4">
+      <a-col  class="siedebar" :xs="0" :sm="0" :md="0" :lg="5" :xl="5" :xll="4">
         <div style="border-right: 1px solid #e8e8e8; padding-bottom: 20px">
-          <a-avatar :size="132" icon="user"/>
+          <a-avatar :size="132" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
           <h4 class="title">{{ currentName }}</h4>
           <span class="tips">{{ tips }}</span>
           <div class="hrefs">
@@ -49,7 +49,7 @@
           <a-tag class="atips" color="purple">purple</a-tag>
         </div>
       </a-col>
-      <a-col :span="19" class="scroll" :xs="24" :sm="25" :md="24" :lg="19" :xl="20">
+      <a-col :span="19" class="scroll" :xs="24" :sm="25" :md="24" :lg="19" :xll="20">
         <router-view></router-view>
       </a-col>
     </a-row>

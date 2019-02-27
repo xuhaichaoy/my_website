@@ -54,9 +54,9 @@ a {
 .contentRight {
   width: 100%;
   overflow: hidden;
-  padding-right: 400px;
+  padding-right: 300px;
 }
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1200px) {
   .contentRight {
     padding-right: 0!important;
   }

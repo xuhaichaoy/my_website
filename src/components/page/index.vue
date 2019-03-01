@@ -132,7 +132,7 @@ export default {
   },
   mounted() {
     this.$http
-      .get("/", {
+      .get("/detail", {
         params: {
           // key: "value"
         }

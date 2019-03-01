@@ -41,10 +41,12 @@ export default {
     };
   },
   mounted() {
+    console.log()
+    let id = this.$route.path.substring(9)
     this.$http
-      .get("/", {
+      .get("/article", {
         params: {
-          // key: "value"
+          articleId: id
         }
       })
       .then(res => {

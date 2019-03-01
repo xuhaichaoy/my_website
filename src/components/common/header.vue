@@ -117,4 +117,11 @@ export default {
 .menu {
   text-align: right;
 }
+.menu .ant-menu-item-selected, .menu .ant-menu-item-active {
+  border-top: 2px solid #1890ff;
+  border-bottom: none!important;
+}
+.menu .ant-menu-item {
+  border-bottom: none!important;
+}
 </style>

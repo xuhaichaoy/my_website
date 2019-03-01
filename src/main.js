@@ -5,6 +5,7 @@ import Routers from './router'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import axios from './httpconfig/http'
+
 Vue.prototype.$http = axios
 
 Vue.use(VueRouter)

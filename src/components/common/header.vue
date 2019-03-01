@@ -27,13 +27,25 @@
               </a-menu>
             </a-col>
             <a-col :xs="0" :sm="10" :md="10" :lg="8" :xl="6">
-              <a-button type="primary">登录</a-button>
-              <a-button style="marginLeft: 20px">注册</a-button>
+              <a-button type="primary" @click="showDrawer">登录</a-button>
+              <a-button style="marginLeft: 20px" @click="showDrawer">注册</a-button>
+              <a-drawer
+                title="Basic Drawer"
+                placement="right"
+                :closable="false"
+                @close="onClose"
+                :visible="visible"
+              >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+              </a-drawer>
             </a-col>
           </a-row>
         </a-col>
       </a-row>
     </div>
+   
     <div class="hideheader"></div>
   </div>
 </template>
@@ -43,7 +55,8 @@ export default {
   data() {
     return {
       userName: "",
-      current: ["index"]
+      current: ["index"],
+      visible: false,
     };
   },
   // watch: {
@@ -53,21 +66,28 @@ export default {
   //     this.current = arr
   //   }
   // },
-  mounted () {
-    if(this.$route.path.substring(1)) {
-      var arr = []
-      arr.push(this.$route.path.substring(1))
-      this.current = arr
+  mounted() {
+    if (this.$route.path.substring(1)) {
+      var arr = [];
+      arr.push(this.$route.path.substring(1));
+      this.current = arr;
     }
   },
   methods: {
     onSearch() {},
     pushmenu(item) {
-      console.log(item)
+      console.log(item);
       this.$router.push({
         path: "/" + item.key
       });
-    }
+    },
+    showDrawer() {
+      console.log(12313)
+      this.visible = true
+    },
+    onClose() {
+      this.visible = false
+    },
   }
 };
 </script>
@@ -117,11 +137,14 @@ export default {
 .menu {
   text-align: right;
 }
-.menu .ant-menu-item-selected, .menu .ant-menu-item-active {
-  border-top: 2px solid #1890ff;
-  border-bottom: none!important;
+.menu .ant-menu-item-selected,
+.menu .ant-menu-item-active {
+  
+  border-top: 2px solid #1890ff!important;
+  border-bottom: none !important;
 }
 .menu .ant-menu-item {
-  border-bottom: none!important;
+  border-top: 2px solid #fff;
+  border-bottom: none !important;
 }
 </style>

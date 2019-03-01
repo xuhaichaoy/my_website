@@ -43,18 +43,18 @@ export default {
   mounted() {
     console.log()
     let id = this.$route.path.substring(9)
-    this.$http
-      .get("/article", {
-        params: {
-          articleId: id
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        alert("请求失败");
-      });
+    // this.$http
+    //   .get("/article", {
+    //     params: {
+    //       articleId: id
+    //     }
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     alert("请求失败");
+    //   });
   },
   methods: {
     detail(id) {

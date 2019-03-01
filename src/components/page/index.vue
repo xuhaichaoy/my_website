@@ -131,18 +131,18 @@ export default {
     return {};
   },
   mounted() {
-    this.$http
-      .get("/detail", {
-        params: {
-          // key: "value"
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        alert("请求失败");
-      });
+    // this.$http
+    //   .get("/detail", {
+    //     params: {
+    //       // key: "value"
+    //     }
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    //   .catch(err => {
+    //     alert("请求失败");
+    //   });
   },
   methods: {
     detail(id) {

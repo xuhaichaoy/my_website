@@ -1,15 +1,13 @@
-import Vue from 'vue/dist/vue.js'
-import App from './App.vue'
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Routers from './router'
-import Antd from 'ant-design-vue'
+import * as Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import axios from './httpconfig/http'
-
-Vue.prototype.$http = axios
-
+import App from './App.vue'
 Vue.use(VueRouter)
 
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(Antd)

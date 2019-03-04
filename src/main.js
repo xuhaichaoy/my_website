@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 Vue.use(Antd)
 
 const RouterConfig = {
+  mode: 'history',
   routes: Routers
 }
 const router = new VueRouter(RouterConfig)

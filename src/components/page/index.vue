@@ -16,9 +16,12 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
-      <a-card @click="detail(2)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+      <a-card @click="detail(2)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "components-anchor-demo-static-anchor">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -33,9 +36,12 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
-      <a-card @click="detail(3)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+      <a-card @click="detail(3)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa1">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -50,9 +56,12 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
-      <a-card @click="detail(4)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+      <a-card @click="detail(4)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa2">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -67,9 +76,12 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
-      <a-card @click="detail(5)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards">
+      <a-card @click="detail(5)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa3">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -84,6 +96,9 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
       <a-card @click="detail(6)" title="为什么函数式组件需要引入 React " :hoverable="true" class="cards">
@@ -101,6 +116,9 @@
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
           <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
         </div>
       </a-card>
       <a-layout-footer
@@ -109,13 +127,12 @@
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
-      <a-anchor>
+      <a-anchor wrapperClass="contentRight" :offsetTop="120" @click="return1">
         <a-anchor-link href="#koa" title="Basic demo"/>
         <a-anchor-link href="#components-anchor-demo-static-anchor" title="Fixed demo"/>
-        <a-anchor-link href="#API" title="API">
-          <a-anchor-link href="#Anchor-Props" title="Anchor Props"/>
-          <a-anchor-link href="#Link-Props" title="Link Props"/>
-        </a-anchor-link>
+        <a-anchor-link href="#koa1" title="Fixed demo"/>
+        <a-anchor-link href="#koa2" title="Fixed demo"/>
+        <a-anchor-link href="#koa3" title="Fixed demo"/>
       </a-anchor>
     </div>
   </div>
@@ -150,7 +167,11 @@ export default {
       this.$router.push({
         path: "/article/" + id
       });
-    }
+    },
+    return1(e, link) {
+      console.log(e)
+      console.log(link)
+    },
   },
 };
 </script>

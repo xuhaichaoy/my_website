@@ -3,7 +3,7 @@
     <a-row :style="{ width: '100%' }">
       <a-col  class="siedebar" :xs="0" :sm="0" :md="0" :lg="5" :xl="5" :xll="4">
         <div style="border-right: 1px solid #e8e8e8; padding-bottom: 20px">
-          <a-avatar :size="132" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
+          <a-avatar :size="132" src="../../assets/logo.png"/>
           <h4 class="title">{{ currentName }}</h4>
           <span class="tips">{{ tips }}</span>
           <div class="hrefs">
@@ -18,21 +18,18 @@
           </div>
         </div>
         <div class="article">
-          <a-divider orientation="left">最近文章</a-divider>
+          <a-divider orientation="left" style="margin: 0; padding: 16px 0">最近文章</a-divider>
           <ul>
-            <li>1.<a>Lorem ipsum dolor</a></li>
-            <li>2.<a>Lorem ipLorem ipLorem ipsum dolor</a></li>
-            <li>3.<a>Lorem ipsum doloLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorr</a></li>
-            <li>4.<a>Lorem Lorem ipLorem ipLorem ipLorem ipipsum dolor</a></li>
-            <li>5.<a>Lorem ipsum dolor</a></li>
-            <li>6.<a>LoreLorem ipLorem ipLorem ipm ipsum dolor</a></li>
-            <li>7.<a>Lorem ipsum dolor</a></li>
-            <li>8.<a>LoremLorem ipLorem ipLorem ip ipsum dolor</a></li>
-            <li>9.<a>Lorem ipsum dolor</a></li>
+            <li><a>Koa基础知识</a></li>
+            <li><a>如何编写高质量函数 -- 命名 </a></li>
+            <li><a>如何编写高质量函数 -- 命名 </a></li>
+            <li><a>如何编写高质量函数 -- 命名 m ipipsum dolor</a></li>
+            <li><a>如何编写高质量函数 -- 命名 </a></li>
+            <li><a>如何编写高质量函数 -- 命名 </a></li>
           </ul>
         </div>
-        <div style="padding-top: 26px; margin-bottom: 30px; border-right: 1px solid #e8e8e8; ">
-          <a-divider orientation="left">标签</a-divider>
+        <div style="border-right: 1px solid #e8e8e8; ">
+          <a-divider orientation="left" style="margin: 0; padding: 16px 0">标签</a-divider>
           <a-tag class="atips" color="pink">node</a-tag>
           <a-tag class="atips" color="red">javascript</a-tag>
           <a-tag class="atips" color="orange">orange</a-tag>
@@ -67,16 +64,12 @@ export default {
   data() {
     return {
       currentName: "海超",
-      tips: "前端小白一枚，还在学习当中～"
+      tips: "前端小白一枚～"
     };
   }
 };
 </script>
 <style>
-.content {
-  padding-top: 40px;
-  box-sizing: border-box;
-}
 .title {
   margin-top: 16px;
   font-size: 20px;
@@ -129,18 +122,30 @@ export default {
 }
 .article {
   border-right: 1px solid #e8e8e8;
+  margin-bottom: -14px;
 }
 .article li {
+  padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  /* padding-left: 30px; */
-  padding-right: 24px;
+  padding-right: 20px;
   box-sizing: border-box;
   text-align: left;
   line-height: 28px;
+  font-size: 14px;
+}
+.article li:hover {
+  background: #f0f2f5;
+  color: #1890ff!important;
+}
+.article li:hover a{
+  color: #1890ff!important;
+}
+.article li a{
+  color: #8590a6;
 }
 .article ul {
-  padding-left: 12px;
+  padding-left: 0;
 }
 </style>

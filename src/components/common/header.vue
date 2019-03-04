@@ -124,6 +124,7 @@
         </a-col>
       </a-row>
     </div>
+    <div class = "padheight"></div>
     <div class="hideheader"></div>
   </div>
 </template>
@@ -244,9 +245,16 @@
     background: white;
     z-index: 999;
   }
-  
+  .padheight {
+    height: 110px;
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 998;
+  }
   .hideheader {
-    height: 65px;
+    height: 110px;
     width: 100%;
   }
   

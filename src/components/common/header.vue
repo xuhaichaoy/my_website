@@ -27,109 +27,129 @@
               </a-menu>
             </a-col>
             <a-col :xs="0" :sm="10" :md="10" :lg="8" :xl="6">
-              <a-button type="primary" @click="showModallogin">登录</a-button>
-              <a-button style="marginLeft: 20px" @click="showModalreg">注册</a-button>
-              <div>
-                <a-modal title="登录" :visible="loginvisible" @cancel="handleCancel1" :footer="null">
-                  <a-form layout="vertical" :form="form" @submit="handleSubmitlogin">
-                    <a-form-item label="用户名">
-                      <a-input v-decorator="[
-                              'userName',
-                              { rules: [{ required: true, message: 'Please input your username!' }] }
-                            ]" placeholder="Username">
-                        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
-                    </a-form-item>
-                    <a-form-item label="密码">
-                      <a-input v-decorator="[
-                              'password',
-                              { rules: [{ required: true, message: 'Please input your Password!' }] }
-                            ]" type="password" placeholder="Password">
-                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-                      </a-input>
-                    </a-form-item>
-                    <a-form-item>
-                      <a-checkbox v-decorator="[
-                          'remember',
-                          {
-                            valuePropName: 'checked',
-                            initialValue: true,
-                          }
-                        ]">
-                        Remember me
-                      </a-checkbox>
-                      <a class="login-form-forgot" href="" style="float: right">
-                        Forgot password
-                      </a>
-                      <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
-                        Log in
-                      </a-button>
+              <div v-if="logined">
+                <a-button type="primary" @click="showModallogin">登录</a-button>
+                <a-button style="marginLeft: 20px" @click="showModalreg">注册</a-button>
+                <div>
+                  <a-modal title="登录" :visible="loginvisible" @cancel="handleCancel1" :footer="null">
+                    <a-form layout="vertical" :form="form" @submit="handleSubmitlogin">
+                      <a-form-item label="用户名">
+                        <a-input v-decorator="[
+                                    'userName',
+                                    { rules: [{ required: true, message: 'Please input your username!' }] }
+                                  ]" placeholder="Username">
+                          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
+                      </a-form-item>
+                      <a-form-item label="密码">
+                        <a-input v-decorator="[
+                                    'password',
+                                    { rules: [{ required: true, message: 'Please input your Password!' }] }
+                                  ]" type="password" placeholder="Password">
+                          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                      </a-form-item>
+                      <a-form-item>
+                        <a-checkbox v-decorator="[
+                                'remember',
+                                {
+                                  valuePropName: 'checked',
+                                  initialValue: true,
+                                }
+                              ]">
+                          Remember me
+                        </a-checkbox>
+                        <a class="login-form-forgot" href="" style="float: right">
+                              Forgot password
+                            </a>
+                        <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
+                          Log in
+                        </a-button>
                         Or <a href="javascript:;" @click="reg">
-                        register now!
-                      </a>
-                    </a-form-item>
-                  </a-form>
-                </a-modal>
-              </div>
-               <div>
-                <a-modal title="注册" :visible="regvisible" @cancel="handleCancel2" :footer="null">
-                  <a-form layout="vertical" :form="form" @submit="handleSubmitreg">
-                    <a-form-item label="用户名">
-                      <a-input v-decorator="[
-                              'userName',
-                              { rules: [{ required: true, message: 'Please input your username!' }] }
-                            ]" placeholder="Username">
-                        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
-                    </a-form-item>
-                    <a-form-item label="密码">
-                      <a-input v-decorator="[
-                              'password',
-                              { rules: [{ required: true, message: 'Please input your Password!' }] }
-                            ]" type="password" placeholder="Password">
-                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-                      </a-input>
-                    </a-form-item>
-                    <a-form-item label="重复密码">
-                      <a-input v-decorator="[
-                              'repassword',
-                              { rules: [{ required: true, message: 'Please input your Password again!' }] }
-                            ]" type="password" placeholder="Password">
-                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-                      </a-input>
-                    </a-form-item>
-                    <a-form-item>
-                      <!-- <a-checkbox v-decorator="[
-                          'remember',
-                          {
-                            valuePropName: 'checked',
-                            initialValue: true,
-                          }
-                        ]">
-                        Remember me
-                      </a-checkbox>
-                      <a class="login-form-forgot" href="" style="float: right">
-                        Forgot password
-                      </a> -->
-                      <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
-                        Reg in
-                      </a-button>
+                              register now!
+                            </a>
+                      </a-form-item>
+                    </a-form>
+                  </a-modal>
+                </div>
+                <div>
+                  <a-modal title="注册" :visible="regvisible" @cancel="handleCancel2" :footer="null">
+                    <a-form layout="vertical" :form="form" @submit="handleSubmitreg">
+                      <a-form-item label="用户名">
+                        <a-input v-decorator="[
+                                    'userName',
+                                    { rules: [{ required: true, message: 'Please input your username!' }] }
+                                  ]" placeholder="Username">
+                          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
+                      </a-form-item>
+                      <a-form-item label="密码">
+                        <a-input v-decorator="[
+                                    'password',
+                                    { rules: [{ required: true, message: 'Please input your Password!' }] }
+                                  ]" type="password" placeholder="Password">
+                          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                      </a-form-item>
+                      <a-form-item label="重复密码">
+                        <a-input v-decorator="[
+                                    'repassword',
+                                    { rules: [{ required: true, message: 'Please input your Password again!' }] }
+                                  ]" type="password" placeholder="Password">
+                          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+                        </a-input>
+                      </a-form-item>
+                      <a-form-item>
+                        <!-- <a-checkbox v-decorator="[
+                                'remember',
+                                {
+                                  valuePropName: 'checked',
+                                  initialValue: true,
+                                }
+                              ]">
+                              Remember me
+                            </a-checkbox>
+                            <a class="login-form-forgot" href="" style="float: right">
+                              Forgot password
+                            </a> -->
+                        <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
+                          Reg in
+                        </a-button>
                         Or <a href="javascript:;" @click="login">
-                        Log in now!
-                      </a>
-                    </a-form-item>
-                  </a-form>
-                </a-modal>
+                              Log in now!
+                            </a>
+                      </a-form-item>
+                    </a-form>
+                  </a-modal>
+                </div>
               </div>
+              <div v-if="!logined">
+                <a-icon type="bell" class="bell" @click= "bell"/>
+                <a-icon type="setting" class = "setting" @click= "setting" />
+                <a-avatar class = "avatar" @click="showDrawer" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
+              </div>
+              <a-drawer
+                title="个人信息"
+                placement="right"
+                :closable="false"
+                @close="onClose"
+                :visible="visible"
+                width="30%"
+              >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+              </a-drawer>
             </a-col>
           </a-row>
         </a-col>
       </a-row>
     </div>
-    <div class = "padheight"></div>
+    <div class="padheight"></div>
     <div class="hideheader"></div>
   </div>
 </template>
 
 <script>
+  import api from '../../httpconfig/request'
   export default {
     data() {
       return {
@@ -137,7 +157,9 @@
         current: ["index"],
         loginvisible: false,
         regvisible: false,
-        form: this.$form.createForm(this)
+        logined: true,
+        form: this.$form.createForm(this),
+        visible: false,
       };
     },
     // watch: {
@@ -183,11 +205,9 @@
         }, 2000)
       },
       handleCancel1(e) {
-        console.log("Clicked cancel button")
         this.loginvisible = false
       },
       handleCancel2(e) {
-        console.log("Clicked cancel button")
         this.regvisible = false
       },
       reg() {
@@ -199,22 +219,30 @@
         this.regvisible = false
       },
       loginin() {
-
+  
       },
       regin() {
-
+  
       },
-      handleSubmitlogin (e) {
+      handleSubmitlogin(e) {
         const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values)
-            this.loginhandleOk()
+            api.login(values, (res) => {
+              const {
+                data
+              } = res
+              if (data.code === 200) {
+  
+              }
+              // this.loginhandleOk()
+            })
+  
           }
         });
       },
-      handleSubmitreg (e) {
+      handleSubmitreg(e) {
         const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
@@ -223,6 +251,18 @@
             this.reghandleOk()
           }
         });
+      },
+      bell() {
+        console.log(123123)
+      },
+      setting() {
+        console.log(2222)
+      },
+      showDrawer() {
+        this.visible = true
+      },
+      onClose() {
+        this.visible = false
       },
     }
   }
@@ -245,6 +285,7 @@
     background: white;
     z-index: 999;
   }
+  
   .padheight {
     height: 110px;
     background: white;
@@ -253,6 +294,7 @@
     top: 0;
     z-index: 998;
   }
+  
   .hideheader {
     height: 110px;
     width: 100%;
@@ -301,13 +343,28 @@
     border-top: 2px solid #fff;
     border-bottom: none !important;
   }
+  
   #components-form-demo-normal-login .login-form {
     max-width: 300px;
   }
+  
   #components-form-demo-normal-login .login-form-forgot {
     float: right;
   }
+  
   #components-form-demo-normal-login .login-form-button {
     width: 100%;
+  }
+  .bell {
+    margin-left: 20px; font-size: 18px; vertical-align: middle;
+    cursor: pointer;
+  }
+  .setting {
+    margin-left: 20px; font-size: 18px; vertical-align: middle;
+    cursor: pointer;
+  }
+  .avatar {
+    margin-left: 20px;vertical-align: middle;
+    cursor: pointer;
   }
 </style>

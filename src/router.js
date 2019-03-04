@@ -3,7 +3,6 @@ import pageDoc from './components/page/doc'
 import pageCategory from './components/page/category'
 import pageAbout from './components/page/about'
 import pageDetail from './components/page/detail'
-import pageTest from './components/page/test'
 export default [
     {
         path: '/',
@@ -29,8 +28,4 @@ export default [
         path: '/article/:id',
         component: pageDetail
     },
-    {
-        path: '/test',
-        component: pageTest
-    }
 ]

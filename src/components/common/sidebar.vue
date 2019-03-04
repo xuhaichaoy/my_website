@@ -49,10 +49,15 @@
           <a-tag class="atips" color="purple">purple</a-tag>
         </div>
       </a-col>
+      <a-col :xs="0" :sm="0" :md="0" :lg="5" :xl="5" :xll="4">
+      </a-col>
       <a-col :span="19" class="scroll" :xs="24" :sm="25" :md="24" :lg="19" :xll="20">
         <router-view></router-view>
       </a-col>
     </a-row>
+    <div>
+    <a-back-top />
+  </div>
   </div>
 </template>
 <script>
@@ -104,9 +109,9 @@ export default {
   box-sizing: border-box;
   height: calc(100vh - 105px);
   overflow: auto;
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
+  position: fixed;
+  top: 110px;
+  left: 0;
   /* overflow: auto; */
   /* width: 100%; */
 }
@@ -116,11 +121,11 @@ export default {
   margin-bottom: 6px!important;
 }
 .scroll {
-  height: calc(100vh - 105px);
-  overflow: auto;
+  /* height: calc(100vh - 105px); */
+  /* overflow: auto; */
   padding-left: 40px!important;
   padding-right: 20px!important;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 .article {
   border-right: 1px solid #e8e8e8;

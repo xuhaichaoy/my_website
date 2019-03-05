@@ -33,10 +33,14 @@
                 <div>
                   <a-modal title="登录" :visible="loginvisible" @cancel="handleCancel1" :footer="null">
                     <a-form layout="vertical" :form="form" @submit="handleSubmitlogin">
-                      <a-form-item label="用户名">
+                      <a-form-item label="邮箱">
                         <a-input v-decorator="[
                                     'userName',
-                                    { rules: [{ required: true, message: 'Please input your username!' }] }
+                                    { rules: [{
+                                      type: 'email', message: 'The input is not valid E-mail!',
+                                    }, {
+                                      required: true, message: 'Please input your E-mail!',
+                                    }] }
                                   ]" placeholder="Username">
                           <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
                       </a-form-item>
@@ -74,26 +78,42 @@
                 <div>
                   <a-modal title="注册" :visible="regvisible" @cancel="handleCancel2" :footer="null">
                     <a-form layout="vertical" :form="form" @submit="handleSubmitreg">
-                      <a-form-item label="用户名">
+                      <a-form-item label="邮箱">
                         <a-input v-decorator="[
                                     'userName',
-                                    { rules: [{ required: true, message: 'Please input your username!' }] }
+                                    { rules: [{
+                                      type: 'email', message: 'The input is not valid E-mail!',
+                                    }, {
+                                      required: true, message: 'Please input your E-mail!',
+                                    }] }
                                   ]" placeholder="Username">
                           <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
                       </a-form-item>
                       <a-form-item label="密码">
                         <a-input v-decorator="[
-                                    'password',
-                                    { rules: [{ required: true, message: 'Please input your Password!' }] }
-                                  ]" type="password" placeholder="Password">
+                          'password',
+                          {
+                            rules: [{
+                              required: true, message: 'Please input your password!',
+                            }, {
+                              validator: validateToNextPassword,
+                            }],
+                          }
+                        ]" type="password" placeholder="Password">
                           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                         </a-input>
                       </a-form-item>
                       <a-form-item label="重复密码">
                         <a-input v-decorator="[
-                                    'repassword',
-                                    { rules: [{ required: true, message: 'Please input your Password again!' }] }
-                                  ]" type="password" placeholder="Password">
+                          'confirm',
+                          {
+                            rules: [{
+                              required: true, message: 'Please confirm your password!',
+                            }, {
+                              validator: compareToFirstPassword,
+                            }],
+                          }
+                        ]" type="password" @blur="handleConfirmBlur" placeholder="Password">
                           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                         </a-input>
                       </a-form-item>
@@ -179,30 +199,34 @@
     methods: {
       onSearch() {},
       pushmenu(item) {
-        console.log(item)
         this.$router.push({
           path: "/" + item.key
         })
+      },
+      handleConfirmBlur  (e) {
+        const value = e.target.value;
+        this.confirmDirty = this.confirmDirty || !!value;
+      },
+      compareToFirstPassword  (rule, value, callback) {
+        const form = this.form;
+        if (value && value !== form.getFieldValue('password')) {
+          callback('Two passwords that you enter is inconsistent!');
+        } else {
+          callback();
+        }
+      },
+      validateToNextPassword  (rule, value, callback) {
+        const form = this.form;
+        if (value && this.confirmDirty) {
+          form.validateFields(['confirm'], { force: true });
+        }
+        callback();
       },
       showModallogin() {
         this.loginvisible = true
       },
       showModalreg() {
         this.regvisible = true
-      },
-      loginhandleOk(e) {
-        console.log('login')
-        setTimeout(() => {
-          this.loginvisible = false
-          this.confirmLoading = false
-        }, 2000)
-      },
-      reghandleOk(e) {
-        console.log('reg')
-        setTimeout(() => {
-          this.regvisible = false
-          this.confirmLoading = false
-        }, 2000)
       },
       handleCancel1(e) {
         this.loginvisible = false
@@ -225,20 +249,21 @@
   
       },
       handleSubmitlogin(e) {
+        let storage=window.localStorage
         const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
             api.login(values, (res) => {
-              const {
-                data
-              } = res
-              if (data.code === 200) {
-  
+              console.log(values)
+              const {code, msg} = res.data
+              if(code === 100) {
+                storage["userName"] = values.userName;
+                this.$message.success(msg)
+                this.loginvisible = false
+                this.logined = false
               }
-              // this.loginhandleOk()
             })
-  
           }
         });
       },
@@ -247,8 +272,14 @@
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values)
-            this.reghandleOk()
+            api.reg(values, (res) => {
+              const {code, msg} = res.data
+              if(code === 100) {
+                this.$message.success(msg)
+                this.loginvisible = true
+                this.regvisible = false
+              }
+            })
           }
         });
       },

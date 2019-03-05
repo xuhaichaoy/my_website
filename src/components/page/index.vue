@@ -152,7 +152,6 @@ export default {
   },
   methods: {
     detail(id) {
-      console.log(id)
       this.$router.push({
         path: "/article/" + id
       });

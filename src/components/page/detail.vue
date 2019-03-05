@@ -14,6 +14,8 @@
         <a-icon type="message" /><span style="margin-left: 10px">23</span>
         <a-divider />
       </div>
+      <div class = "artContent">
+      </div>
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
@@ -37,12 +39,18 @@ export default {
   },
   data() {
     return {
-      date: '2019-02-23'
+      date: '2019-02-23',
+      artName: '海超',
     };
   },
   mounted() {
     console.log()
     let id = this.$route.path.substring(9)
+   var showdown  = require('showdown'),
+    converter = new showdown.Converter(),
+    text      = '### hello, markdown!',
+    html2      = converter.makeHtml(text);
+    document.querySelector('.artContent').innerHTML = html2
     // this.$http
     //   .get("/article", {
     //     params: {
@@ -136,5 +144,8 @@ a {
   color: #fff;
   text-align: center;
   font-size: 20px;
+}
+.artContent {
+  text-align: left;
 }
 </style>

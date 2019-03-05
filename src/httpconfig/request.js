@@ -21,6 +21,16 @@ let apiUrl = {
       .catch(err => {
         return err
       });
+  },
+  getInfo: function(params, callback) {
+    axios
+    .get("/api/userInfo", {params})
+    .then(res => {
+      callback(res)
+    })
+    .catch(err => {
+      return err
+    });
   }
 }
 

@@ -170,6 +170,7 @@
 
 <script>
   import api from '../../httpconfig/request'
+  import cookie from 'js-cookie'
   export default {
     data() {
       return {
@@ -249,19 +250,20 @@
   
       },
       handleSubmitlogin(e) {
-        let storage=window.localStorage
+        // let storage=window.localStorage
         const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
             api.login(values, (res) => {
-              console.log(values)
-              const {code, msg} = res.data
+              const {code, msg, data} = res.data
               if(code === 100) {
-                storage["userName"] = values.userName;
+                cookie.set("token", data, 1 / 12)
                 this.$message.success(msg)
                 this.loginvisible = false
                 this.logined = false
+              }else {
+                this.$message.error(msg);
               }
             })
           }
@@ -278,12 +280,17 @@
                 this.$message.success(msg)
                 this.loginvisible = true
                 this.regvisible = false
+              }else {
+                this.$message.error(msg);
               }
             })
           }
         });
       },
       bell() {
+        api.getInfo('', (res) => {
+          console.log(res)
+        })
         console.log(123123)
       },
       setting() {

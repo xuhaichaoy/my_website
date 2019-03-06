@@ -3,7 +3,7 @@
     <a-row :style="{ width: '100%' }">
       <a-col  class="siedebar" :xs="0" :sm="0" :md="0" :lg="5" :xl="5" :xll="4">
         <div style="border-right: 1px solid #e8e8e8; padding-bottom: 20px">
-          <a-avatar :size="132" src="../../assets/logo.png"/>
+          <a-avatar :size="132" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"/>
           <h4 class="title">{{ currentName }}</h4>
           <span class="tips">{{ tips }}</span>
           <div class="hrefs">

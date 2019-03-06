@@ -26,15 +26,6 @@ const store = new Vuex.Store({
     LOGIN(state) {
       // 先让登录状态变为登录了
       state.logined = true
-      // 然后去sessionStorage取用户数据
-      // 再把用户数据发下去
-      //  state.LoginedUser.name = cookie.get("userName")
-      //  state.LoginedUser.avatar = user.avatar
-      // state.LoginedUser.nickName = cookie.get("nickName")
-      // state.LoginedUser.username = cookie.get("userName")
-      // state.LoginedUser.username = cookie.get("userName")
-      // state.LoginedUser.username = cookie.get("userName")
-      // state.LoginedUser.username = cookie.get("userName")
     },
     // 登出
     LOGOUT(state) {

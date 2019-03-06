@@ -1,6 +1,26 @@
 <template>
   <div class="contentRight">
     <div class="card">
+      <!-- <a-card v-for="(key,index) in allData" :key = index @click="detail(index)" :title="key.title" :hoverable="true" class="cards">
+        <a href="#" slot="extra">more</a>
+        <p>card content</p>
+        <p>card content</p>
+        <p>card content</p>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message"/>
+          <span class="spans">23</span>
+          <a-divider type="vertical"/>
+          <a-icon type="tag"/>
+          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+          <a-divider type="vertical"/>
+          <a-icon type="folder"/>
+          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+          <div style = "float: right">
+            <span style="margin-left:4px">2019-03-04</span>
+          </div>
+        </div>
+      </a-card> -->
       <a-card @click="detail(1)" title="Koa使用指南" :hoverable="true" class="cards" id="koa">
         <a href="#" slot="extra">more</a>
         <p>card content</p>
@@ -121,9 +141,12 @@
           </div>
         </div>
       </a-card>
-      <a-layout-footer
+      <div style="text-align: center; margin: 30px">
+        <a-pagination showSizeChanger :pageSize.sync="pageSize" @showSizeChange="onShowSizeChange" :total="500" v-model="current"/>
+      </div>
+      <!-- <a-layout-footer
         style="text-align: center; background: white"
-      >Ant Design ©2018 Created by Ant UED</a-layout-footer>
+      >Ant Design ©2019 Created by Ant UED</a-layout-footer> -->
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
@@ -139,19 +162,44 @@
 </template>
 
 <script>
+import api from '../../httpconfig/request'
 export default {
   name: "pageIndex",
   props: {
     msg: String
   },
   data() {
-    return {};
+    return {
+      pageSize: 10,
+      current: 1,
+      allData: []
+    };
+  },
+  watch:{
+    pageSize(val) {
+      console.log('pageSize',val);
+    },
+    current(val) {
+      console.log('current',val);
+    }
   },
   mounted() {
-    
+    let params = {
+      limit: this.pageSize,
+      page: this.current
+    }
+    api.getArtical(params, (res) => {
+      const data = res.data
+      if(data.code === 100) {
+        this.allData = data.data
+      }
+      console.log(this.allData)
+    })
   },
   methods: {
     detail(id) {
+      console.log(id)
+      return
       this.$router.push({
         path: "/article/" + id
       });
@@ -160,6 +208,9 @@ export default {
       console.log(e)
       console.log(link)
     },
+    onShowSizeChange(current, pageSize) {
+      console.log(current, pageSize);
+    }
   },
 };
 </script>

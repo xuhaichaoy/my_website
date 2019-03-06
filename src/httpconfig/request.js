@@ -31,6 +31,16 @@ let apiUrl = {
     .catch(err => {
       return err
     });
+  },
+  getArtical: function(params, callback) {
+    axios
+    .get("/api/getArtical", {params})
+    .then(res => {
+      callback(res)
+    })
+    .catch(err => {
+      return err
+    });
   }
 }
 

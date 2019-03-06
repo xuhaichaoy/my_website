@@ -35,42 +35,42 @@
                     <a-form layout="vertical" :form="form" @submit="handleSubmitlogin">
                       <a-form-item label="邮箱">
                         <a-input v-decorator="[
-                                          'userName',
-                                          { rules: [{
-                                            type: 'email', message: 'The input is not valid E-mail!',
-                                          }, {
-                                            required: true, message: 'Please input your E-mail!',
-                                          }] }
-                                        ]" placeholder="Username">
+                                              'userName',
+                                              { rules: [{
+                                                type: 'email', message: 'The input is not valid E-mail!',
+                                              }, {
+                                                required: true, message: 'Please input your E-mail!',
+                                              }] }
+                                            ]" placeholder="Username">
                           <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
                       </a-form-item>
                       <a-form-item label="密码">
                         <a-input v-decorator="[
-                                          'password',
-                                          { rules: [{ required: true, message: 'Please input your Password!' }] }
-                                        ]" type="password" placeholder="Password">
+                                              'password',
+                                              { rules: [{ required: true, message: 'Please input your Password!' }] }
+                                            ]" type="password" placeholder="Password">
                           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                         </a-input>
                       </a-form-item>
                       <a-form-item>
                         <a-checkbox v-decorator="[
-                                      'remember',
-                                      {
-                                        valuePropName: 'checked',
-                                        initialValue: true,
-                                      }
-                                    ]">
+                                          'remember',
+                                          {
+                                            valuePropName: 'checked',
+                                            initialValue: true,
+                                          }
+                                        ]">
                           Remember me
                         </a-checkbox>
                         <a class="login-form-forgot" href="" style="float: right">
-                                    Forgot password
-                                  </a>
+                                        Forgot password
+                                      </a>
                         <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
                           Log in
                         </a-button>
                         Or <a href="javascript:;" @click="reg">
-                                    register now!
-                                  </a>
+                                        register now!
+                                      </a>
                       </a-form-item>
                     </a-form>
                   </a-modal>
@@ -80,62 +80,50 @@
                     <a-form layout="vertical" :form="form" @submit="handleSubmitreg">
                       <a-form-item label="邮箱">
                         <a-input v-decorator="[
-                                          'userName',
-                                          { rules: [{
-                                            type: 'email', message: 'The input is not valid E-mail!',
-                                          }, {
-                                            required: true, message: 'Please input your E-mail!',
-                                          }] }
-                                        ]" placeholder="Username">
+                                              'userName',
+                                              { rules: [{
+                                                type: 'email', message: 'The input is not valid E-mail!',
+                                              }, {
+                                                required: true, message: 'Please input your E-mail!',
+                                              }] }
+                                            ]" placeholder="Username">
                           <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" /></a-input>
                       </a-form-item>
                       <a-form-item label="密码">
                         <a-input v-decorator="[
-                                'password',
-                                {
-                                  rules: [{
-                                    required: true, message: 'Please input your password!',
-                                  }, {
-                                    validator: validateToNextPassword,
-                                  }],
-                                }
-                              ]" type="password" placeholder="Password">
+                                    'password',
+                                    {
+                                      rules: [{
+                                        required: true, message: 'Please input your password!',
+                                      }, {
+                                        validator: validateToNextPassword,
+                                      }],
+                                    }
+                                  ]" type="password" placeholder="Password">
                           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                         </a-input>
                       </a-form-item>
                       <a-form-item label="重复密码">
                         <a-input v-decorator="[
-                                'confirm',
-                                {
-                                  rules: [{
-                                    required: true, message: 'Please confirm your password!',
-                                  }, {
-                                    validator: compareToFirstPassword,
-                                  }],
-                                }
-                              ]" type="password" @blur="handleConfirmBlur" placeholder="Password">
+                                    'confirm',
+                                    {
+                                      rules: [{
+                                        required: true, message: 'Please confirm your password!',
+                                      }, {
+                                        validator: compareToFirstPassword,
+                                      }],
+                                    }
+                                  ]" type="password" @blur="handleConfirmBlur" placeholder="Password">
                           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
                         </a-input>
                       </a-form-item>
                       <a-form-item>
-                        <!-- <a-checkbox v-decorator="[
-                                      'remember',
-                                      {
-                                        valuePropName: 'checked',
-                                        initialValue: true,
-                                      }
-                                    ]">
-                                    Remember me
-                                  </a-checkbox>
-                                  <a class="login-form-forgot" href="" style="float: right">
-                                    Forgot password
-                                  </a> -->
                         <a-button type="primary" html-type="submit" class="login-form-button" style="width: 100%; display: block; margin-top: 10px; margin-bottom: 10px">
                           Reg in
                         </a-button>
                         Or <a href="javascript:;" @click="login">
-                                    Log in now!
-                                  </a>
+                                        Log in now!
+                                      </a>
                       </a-form-item>
                     </a-form>
                   </a-modal>
@@ -144,12 +132,23 @@
               <div v-if="logined">
                 <a-icon type="bell" class="bell" @click="bell" />
                 <a-icon type="setting" class="setting" @click="setting" />
-                <a-icon type="logout" class="setting" @click="logout"/>
-                <a-avatar class="avatar" @click="showDrawer" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                <a-icon type="logout" class="setting" @click="logout" />
+                <a-avatar class="avatar" @click="showDrawer" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
               </div>
-              <a-drawer title="个人信息" placement="right" :closable="false" @close="onClose" :visible="visible" width="30%">
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+              <a-drawer title="个人信息" placement="right" :closable="false" @close="onClose" :visible="visible" width="36%">
+                <p class="clearfix">
+                  <a-upload action="//jsonplaceholder.typicode.com/posts/" listType="picture-card" :fileList="fileList" @preview="handlePreview" @change="handleChange">
+                    <div v-if="fileList.length < 4">
+                      <a-icon type="plus" />
+                      <div class="ant-upload-text">Upload</div>
+                    </div>
+                  </a-upload>
+                  <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+                    <img alt="example" style="width: 100%" :src="previewImage" />
+                  </a-modal>
+                </p>
+                <p>昵称：<span class="info">{{ currentUser.nickName }}</span></p>
+                <p>个人简介：<span class="info">{{ currentUser.introduction }}</span></p>
                 <p>Some contents...</p>
               </a-drawer>
             </a-col>
@@ -174,10 +173,28 @@
         regvisible: false,
         form: this.$form.createForm(this),
         visible: false,
+        currentUser: {
+          nickName: '',
+          image: '',
+          userName: '',
+          introduction: '',
+          github: '',
+          wechat: '',
+          id: ''
+        },
+        previewVisible: false,
+        previewImage: '',
+        fileList: [{
+          uid: '-1',
+          name: 'xxx.png',
+          status: 'done',
+          url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+        }],
+  
       };
     },
     computed: {
-      logined () {
+      logined() {
         return this.$store.state.logined
       }
     },
@@ -237,12 +254,8 @@
         this.loginvisible = true
         this.regvisible = false
       },
-      loginin() {
-  
-      },
-      regin() {
-  
-      },
+      loginin() {},
+      regin() {},
       handleSubmitlogin(e) {
         // let storage=window.localStorage
         const _this = this
@@ -260,7 +273,7 @@
                 cookie.set("userName", values.userName)
                 this.$message.success(msg)
                 this.loginvisible = false
-                this.$store.dispatch("login")
+                this.$store.dispatch("getInfo")
               } else {
                 this.$message.error(msg);
               }
@@ -299,6 +312,8 @@
         console.log(2222)
       },
       showDrawer() {
+        this.currentUser = this.$store.state.LoginedUser
+        console.log(this.currentUser)
         this.visible = true
       },
       onClose() {
@@ -307,7 +322,18 @@
       logout() {
         this.$store.dispatch("logout")
         this.$message.success('退出成功！')
-      }
+      },
+      handleCancel() {
+        this.previewVisible = false
+      },
+      handlePreview(file) {
+        this.previewImage = file.url || file.thumbUrl
+        this.previewVisible = true
+      },
+      handleChange({fileList}) {
+        console.log(fileList)
+        this.fileList = fileList
+      },
     }
   }
 </script>
@@ -418,5 +444,19 @@
     margin-left: 20px;
     vertical-align: middle;
     cursor: pointer;
+  }
+  
+  .info {
+    font-size: 13px;
+  }
+  
+  .ant-upload-select-picture-card i {
+    font-size: 32px;
+    color: #999;
+  }
+  
+  .ant-upload-select-picture-card .ant-upload-text {
+    margin-top: 8px;
+    color: #666;
   }
 </style>

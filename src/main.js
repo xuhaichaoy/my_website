@@ -5,6 +5,8 @@ import * as Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import axios from './httpconfig/http'
 import App from './App.vue'
+import store from './store/store'
+
 Vue.use(VueRouter)
 
 Vue.prototype.$http = axios
@@ -21,5 +23,6 @@ const router = new VueRouter(RouterConfig)
 new Vue({
   el: '#app',
   router: router,
+  store,
   render: h => h(App),
 }).$mount('#app')

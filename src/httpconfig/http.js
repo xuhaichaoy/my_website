@@ -8,14 +8,14 @@ import apiURL from './api.js'
 import cookie from 'js-cookie'
 
 // axios默认配置
-axios.defaults.timeout = 10000; // 超时时间
-axios.defaults.baseURL = apiURL; // 默认地址
+axios.defaults.timeout = 10000 // 超时时间
+axios.defaults.baseURL = apiURL // 默认地址
 
 //整理数据
 axios.defaults.transformRequest = function (data) {
-  //data = Qs.stringify(data);
-  data = JSON.stringify(data);
-  return data;
+  //data = Qs.stringify(data)
+  data = JSON.stringify(data)
+  return data
 };
 
 // 路由请求拦截
@@ -23,20 +23,18 @@ axios.defaults.transformRequest = function (data) {
 axios.interceptors.request.use(
   config => {
     //config.data = JSON.stringify(config.data);  
-    config.headers['Content-Type'] = 'application/json;charset=UTF-8';
+    config.headers['Content-Type'] = 'application/json;charset=UTF-8'
     //判断是否存在ticket，如果存在的话，则每个http header都加上ticket
     if (cookie.get("token")) {
       //用户每次操作，都将cookie设置成2小时
       cookie.set("token", cookie.get("token"), 1 / 12)
-      cookie.set("name", cookie.get("name"), 1 / 12)
-      config.headers.token = cookie.get("token");
-      config.headers.name = cookie.get("name");
+      config.headers.token = cookie.get("token")
     }
 
-    return config;
+    return config
   },
   error => {
-    return Promise.reject(error.response);
+    return Promise.reject(error.response)
   });
 
 // 路由响应拦截
@@ -50,7 +48,7 @@ axios.interceptors.response.use(
       //      window.location.href='http://login.com'
       return
     } else {
-      return response;
+      return response
     }
   },
   error => {

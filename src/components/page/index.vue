@@ -1,289 +1,322 @@
 <template>
   <div class="contentRight">
+  
     <div class="card">
-      <!-- <a-card v-for="(key,index) in allData" :key = index @click="detail(index)" :title="key.title" :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
+      <a-spin :spinning="spinning" :delay="delayTime">
+        <a-card v-for="(key,index) in allData" :key="index" @click="detail(key.id)" :title="key.title" :hoverable="true" class="cards" :id="key.title">
+          <a href="#" slot="extra">more</a>
+          <div class="test_demo" v-html="contents(key.content)"></div>
+          <a-divider dashed/>
+          <div class="cardBottom">
+            <a-icon type="message" />
+            <span class="spans">{{ key.discuss }}</span>
+            <a-divider type="vertical" />
+            <a-icon type="tag" />
+            <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
+            <a-divider type="vertical" />
+            <a-icon type="folder" />
+            <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
+            <div style="float: right">
+              <span style="margin-left:4px">{{ key.postDate }}</span>
+            </div>
           </div>
-        </div>
-      </a-card> -->
-      <a-card @click="detail(1)" title="Koa使用指南" :hoverable="true" class="cards" id="koa">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
-      <a-card @click="detail(2)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "components-anchor-demo-static-anchor">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
-      <a-card @click="detail(3)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa1">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
-      <a-card @click="detail(4)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa2">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
-      <a-card @click="detail(5)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa3">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
-      <a-card @click="detail(6)" title="为什么函数式组件需要引入 React " :hoverable="true" class="cards">
-        <a href="#" slot="extra">more</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
-        <a-divider dashed/>
-        <div class="cardBottom">
-          <a-icon type="message"/>
-          <span class="spans">23</span>
-          <a-divider type="vertical"/>
-          <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
-          <a-divider type="vertical"/>
-          <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
-          <div style = "float: right">
-            <span style="margin-left:4px">2019-03-04</span>
-          </div>
-        </div>
-      </a-card>
+        </a-card>
+      </a-spin>
+      <!-- <a-card @click="detail(1)" title="Koa使用指南" :hoverable="true" class="cards" id="koa">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card>
+          <a-card @click="detail(2)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "components-anchor-demo-static-anchor">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card>
+          <a-card @click="detail(3)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa1">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card>
+          <a-card @click="detail(4)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa2">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card>
+          <a-card @click="detail(5)" title="如何编写高质量函数 -- 命名 " :hoverable="true" class="cards" id = "koa3">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card>
+          <a-card @click="detail(6)" title="为什么函数式组件需要引入 React " :hoverable="true" class="cards">
+            <a href="#" slot="extra">more</a>
+            <p>card content</p>
+            <p>card content</p>
+            <p>card content</p>
+            <a-divider dashed/>
+            <div class="cardBottom">
+              <a-icon type="message"/>
+              <span class="spans">23</span>
+              <a-divider type="vertical"/>
+              <a-icon type="tag"/>
+              <a-tag color="pink" style="margin-left: 8px">后端</a-tag>
+              <a-divider type="vertical"/>
+              <a-icon type="folder"/>
+              <a-tag color="cyan" style="margin-left: 8px">node</a-tag>
+              <div style = "float: right">
+                <span style="margin-left:4px">2019-03-04</span>
+              </div>
+            </div>
+          </a-card> -->
       <div style="text-align: center; margin: 30px">
-        <a-pagination showSizeChanger :pageSize.sync="pageSize" @showSizeChange="onShowSizeChange" :total="500" v-model="current"/>
+        <a-pagination showSizeChanger :pageSize.sync="pageSize" @showSizeChange="onShowSizeChange" :total="allcount" v-model="current" />
       </div>
       <!-- <a-layout-footer
-        style="text-align: center; background: white"
-      >Ant Design ©2019 Created by Ant UED</a-layout-footer> -->
+            style="text-align: center; background: white"
+          >Ant Design ©2019 Created by Ant UED</a-layout-footer> -->
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
-      <a-anchor wrapperClass="contentRight" :offsetTop="120" @click="return1">
-        <a-anchor-link href="#koa" title="Basic demo"/>
-        <a-anchor-link href="#components-anchor-demo-static-anchor" title="Fixed demo"/>
-        <a-anchor-link href="#koa1" title="Fixed demo"/>
-        <a-anchor-link href="#koa2" title="Fixed demo"/>
-        <a-anchor-link href="#koa3" title="Fixed demo"/>
+      <a-anchor wrapperClass="contentRight" :offsetTop="120">
+        <a-anchor-link :title="key.title" v-for="(key, index) in allData" :href="'#' + key.title" :key="index" />
       </a-anchor>
     </div>
   </div>
 </template>
 
 <script>
-import api from '../../httpconfig/request'
-export default {
-  name: "pageIndex",
-  props: {
-    msg: String
-  },
-  data() {
-    return {
-      pageSize: 10,
-      current: 1,
-      allData: []
-    };
-  },
-  watch:{
-    pageSize(val) {
-      console.log('pageSize',val);
+  import api from '../../httpconfig/request'
+  const showdown = require('showdown')
+  const converter = new showdown.Converter()
+  export default {
+    name: "pageIndex",
+    props: {
+      msg: String
     },
-    current(val) {
-      console.log('current',val);
-    }
-  },
-  mounted() {
-    let params = {
-      limit: this.pageSize,
-      page: this.current
-    }
-    api.getArtical(params, (res) => {
-      const data = res.data
-      if(data.code === 100) {
-        this.allData = data.data
+    data() {
+      return {
+        pageSize: 10,
+        current: 1,
+        allData: [],
+        allcount: 0,
+        spinning: true,
+        delayTime: 500,
+      };
+    },
+    watch: {
+      pageSize(val) {
+        console.log('pageSize', val);
+      },
+      current(val) {
+        console.log('current', val);
       }
-      console.log(this.allData)
-    })
-  },
-  methods: {
-    detail(id) {
-      console.log(id)
-      return
-      this.$router.push({
-        path: "/article/" + id
-      });
     },
-    return1(e, link) {
-      console.log(e)
-      console.log(link)
+    computed: {
+      contents() {
+        return function(content) {
+          return converter.makeHtml(content)
+        }
+      }
     },
-    onShowSizeChange(current, pageSize) {
-      console.log(current, pageSize);
-    }
-  },
-};
+    mounted() {
+      this.getdata()
+    },
+    methods: {
+      getdata() {
+        let params = {
+          limit: this.pageSize,
+          page: this.current
+        }
+        api.getArtical(params, (res) => {
+          const data = res.data
+          if (data.code === 100) {
+            this.allData = data.data
+            this.allcount = data.count
+            this.spinning = false
+          }
+        })
+      },
+      detail(id) {
+        this.$router.push({
+          path: "/article/" + id
+        });
+      },
+      onShowSizeChange(current, pageSize) {
+        this.current = current
+        this.pageSize = pageSize
+        this.getdata()
+      }
+    },
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.contentRight {
-  width: 100%;
-  overflow: hidden;
-}
-.card {
-  padding-right: 300px;
-  text-align: left;
-}
-.cards {
-  margin-top: 10px;
-}
-.cards:hover {
-  background: rgb(238, 250, 254);
-}
-.sideMenu {
-  text-align: left;
-  width: 300px;
-  position: fixed;
-  top: 110px;
-  right: 0px;
-  padding-left: 10px;
-  padding-right: 30px;
-}
-.sideMenu > ul > li {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: 28px;
-}
-.spans {
-  margin-left: 6px;
-}
-.cardBottom {
-  font-size: 12px;
-}
-@media screen and (max-width: 1200px) {
-  .sideMenu {
-    display: none;
-    /* width: 0; */
+  ul {
+    list-style-type: none;
+    padding: 0;
   }
+  
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  a {
+    color: #42b983;
+  }
+  
+  .contentRight {
+    width: 100%;
+    overflow: hidden;
+  }
+  
   .card {
-    padding-right: 0 !important;
+    padding-right: 300px;
+    text-align: left;
   }
-}
-#components-back-top-demo-custom .ant-back-top {
-  bottom: 100px;
-}
-#components-back-top-demo-custom .ant-back-top-inner {
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
-  border-radius: 4px;
-  background-color: #1088e9;
-  color: #fff;
-  text-align: center;
-  font-size: 20px;
-}
+  
+  .cards {
+    margin-top: 10px;
+  }
+  
+  .cards:hover {
+    background: rgb(238, 250, 254);
+  }
+  
+  .sideMenu {
+    text-align: left;
+    width: 300px;
+    position: fixed;
+    top: 110px;
+    right: 0px;
+    padding-left: 10px;
+    padding-right: 30px;
+  }
+  
+  .sideMenu>ul>li {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 28px;
+  }
+  
+  .spans {
+    margin-left: 6px;
+  }
+  
+  .cardBottom {
+    font-size: 12px;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .sideMenu {
+      display: none;
+      /* width: 0; */
+    }
+    .card {
+      padding-right: 0 !important;
+    }
+  }
+  
+  #components-back-top-demo-custom .ant-back-top {
+    bottom: 100px;
+  }
+  
+  #components-back-top-demo-custom .ant-back-top-inner {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #1088e9;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .test_demo {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .spin-content {
+    border: 1px solid #91d5ff;
+    background-color: #e6f7ff;
+    padding: 30px;
+  }
 </style>

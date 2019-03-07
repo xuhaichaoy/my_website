@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import cookie from 'js-cookie'
+// import cookie from 'js-cookie'
 import api from '../httpconfig/request'
 
 Vue.use(Vuex)

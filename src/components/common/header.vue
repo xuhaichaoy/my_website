@@ -147,8 +147,8 @@
                     <img alt="example" style="width: 100%" :src="previewImage" />
                   </a-modal>
                 </p>
-                <p>昵称：<span class="info">{{ currentUser.nickName }}</span></p>
-                <p>个人简介：<span class="info">{{ currentUser.introduction }}</span></p>
+                <p>昵称：<span>{{ currentUser.nickName }}</span></p>
+                <p>个人简介：<span>{{ currentUser.introduction }}</span></p>
                 <p>Some contents...</p>
               </a-drawer>
             </a-col>
@@ -444,10 +444,6 @@
     margin-left: 20px;
     vertical-align: middle;
     cursor: pointer;
-  }
-  
-  .info {
-    font-size: 13px;
   }
   
   .ant-upload-select-picture-card i {

@@ -10,16 +10,17 @@ const store = new Vuex.Store({
     // 登录状态为没登录
     logined: false,
     token: '',
-    // 用户信息数据,目前只需要avatar 和 name,还是把username也加上吧
-    LoginedUser: {
-      nickName: '',
-      image: '',
-      userName: '',
-      introduction: '',
-      github: '',
+    currentUser: {
+      nickName: '海超',
+      image: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      userName: '1@qq.com',
+      introduction: '前端小白一枚～',
+      github: 'https://github.com/xuhaichaoy',
       wechat: '',
-      id: ''
-    }
+      id: '1'
+    },
+    // 用户信息数据,目前只需要avatar 和 name,还是把username也加上吧
+    LoginedUser: {}
   },
   mutations: {
     // 登录
@@ -44,22 +45,10 @@ const store = new Vuex.Store({
         if(res.data.code != -1) {
           const {data} = res.data
           state.logined = true
-          state.LoginedUser.nickName = data.nickName
-          state.LoginedUser.github = data.github
-          state.LoginedUser.image = data.image
-          state.LoginedUser.userName = data.userName
-          state.LoginedUser.introduction = data.introduction
-          state.LoginedUser.wechat = data.wechat
-          state.LoginedUser.id = data.id
+          state.LoginedUser = data
         }else {
           state.logined = false
-          state.LoginedUser.nickName = ""
-          state.LoginedUser.github = ""
-          state.LoginedUser.image = ""
-          state.LoginedUser.userName = ""
-          state.LoginedUser.introduction = ""
-          state.LoginedUser.wechat = ""
-          state.LoginedUser.id = ""
+          state.LoginedUser = {}
         }
       })
     }

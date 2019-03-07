@@ -3,29 +3,24 @@
     <a-row :style="{ width: '100%' }">
       <a-col  class="siedebar" :xs="0" :sm="0" :md="0" :lg="5" :xl="5" :xll="4">
         <div style="border-right: 1px solid #e8e8e8; padding-bottom: 20px">
-          <a-avatar :size="132" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"/>
-          <h4 class="title">{{ currentName }}</h4>
-          <span class="tips">{{ tips }}</span>
+          <a-avatar :size="132" :src="user.image"/>
+          <h4 class="title">{{ user.nickName }}</h4>
+          <span class="tips">{{ user.introduction }}</span>
           <div class="hrefs">
             <a>
               <a-icon type="github" class="hrefaa"/>
-              <span>github</span>
+              <span><a :href="user.github">github</a></span>
             </a>
             <a class="hrefa">
               <a-icon type="wechat" class="hrefaa"/>
-              <span>wechat</span>
+              <span><a href="javascript:;">wechat</a></span>
             </a>
           </div>
         </div>
         <div class="article">
           <a-divider orientation="left" style="margin: 0; padding: 16px 0">最近文章</a-divider>
           <ul>
-            <li><a>Koa基础知识</a></li>
-            <li><a>如何编写高质量函数 -- 命名 </a></li>
-            <li><a>如何编写高质量函数 -- 命名 </a></li>
-            <li><a>如何编写高质量函数 -- 命名 m ipipsum dolor</a></li>
-            <li><a>如何编写高质量函数 -- 命名 </a></li>
-            <li><a>如何编写高质量函数 -- 命名 </a></li>
+            <li v-for="(key, index) in alldata" :key="index"><a href="javascript:;" @click="detail(key.id)">{{ key.title }}</a></li>
           </ul>
         </div>
         <div style="border-right: 1px solid #e8e8e8; ">
@@ -58,15 +53,38 @@
   </div>
 </template>
 <script>
+import api from '../../httpconfig/request'
 export default {
   name: "app",
   components: {},
   data() {
     return {
-      currentName: "海超",
-      tips: "前端小白一枚～"
+      user: {},
+      alldata: []
     };
-  }
+  },
+  mounted() {
+    this.user = this.$store.state.currentUser
+    this.getlist()
+  },
+  methods: {
+    getlist() {
+      const params = {
+        id: this.user.id
+      }
+      api.getlist(params, (res) => {
+        const data = res.data
+        if(data.code === 100) {
+          this.alldata = data.data
+        }
+      })
+    },
+    detail(id) {
+      this.$router.push({
+        path: "/article/" + id
+      });
+    },
+  },
 };
 </script>
 <style>
@@ -81,9 +99,17 @@ export default {
 .hrefs {
   margin-top: 10px;
 }
-.hrefs > a {
+
+.hrefs  a {
   display: inline-block;
   color: rgba(0, 0, 0, 0.65);
+  text-decoration:none;
+}
+.article a {
+  text-decoration:none!important;
+}
+.article a:visited {
+  text-decoration:none!important;
 }
 .hrefa {
   margin-left: 10px;

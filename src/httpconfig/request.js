@@ -61,6 +61,16 @@ let apiUrl = {
     .catch(err => {
       return err
     });
+  },
+  getlist: function(params, callback) {
+    axios
+    .get("/api/getlist", {params})
+    .then(res => {
+      callback(res)
+    })
+    .catch(err => {
+      return err
+    });
   }
 }
 

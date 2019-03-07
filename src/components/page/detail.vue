@@ -3,7 +3,7 @@
     <div class="detail">
       <h2>{{ detailData.title }}</h2>
       <div class="tips">
-        <a-icon type="calendar" /> Posted on <span>{{ date }}</span>
+        <a-icon type="calendar" /> Posted on <span>{{ detailData.postDate }}</span>
         <a-divider type="vertical" />
         <a-icon type="tag" />
         <a-tag color="pink" style="margin-left: 10px">{{ detailData.tips }}</a-tag>
@@ -45,8 +45,6 @@
     },
     data() {
       return {
-        date: '2019-02-23',
-        artName: '海超',
         content: '',
         spinning: true,
         delayTime: 500,
@@ -61,6 +59,11 @@
     },
     mounted() {
       this.detail()
+    },
+    watch:{
+      $route(to,from){
+        this.detail()
+      }
     },
     methods: {
       detail() {

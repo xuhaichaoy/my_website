@@ -99,14 +99,13 @@ export default {
 .hrefs {
   margin-top: 10px;
 }
-
-.hrefs  a {
+.hrefs > a {
   display: inline-block;
   color: rgba(0, 0, 0, 0.65);
   text-decoration:none;
 }
 .article a {
-  text-decoration:none!important;
+  text-decoration: none;
 }
 .article a:visited {
   text-decoration:none!important;

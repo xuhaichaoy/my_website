@@ -20,7 +20,7 @@
             </div>
           </div>
         </a-card>
-      <div style="text-align: center; margin: 30px">
+      <div style="text-align: center; margin: 30px" v-if="allData.length > 0">
         <a-pagination showSizeChanger :pageSize.sync="pageSize" @showSizeChange="onShowSizeChange" :total="allcount" v-model="current" />
       </div>
       </a-spin>
@@ -86,6 +86,7 @@
             this.allData = data.data
             this.allcount = data.count
             this.spinning = false
+            this.$store.state.loading = false
           }
         })
       },

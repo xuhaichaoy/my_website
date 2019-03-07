@@ -3,7 +3,7 @@
     <div class="header">
       <a-row>
         <a-col class="clos" :xs="5" :sm="5" :md="5" :lg="5" :xl="5" :xll="4">
-          <span class="logoName">海超的博客</span>
+          <span class="logoName" @click="home">{{ bios }}</span>
         </a-col>
         <a-col class="clos" :xs="19" :sm="19" :md="19" :lg="19" :xl="19" :xll="20">
           <a-row>
@@ -173,6 +173,7 @@
         regvisible: false,
         form: this.$form.createForm(this),
         visible: false,
+        bios:'',
         currentUser: {
           nickName: '',
           image: '',
@@ -199,6 +200,7 @@
       }
     },
     mounted() {
+      this.bios = this.$store.state.currentUser.bios
       this.$store.dispatch("getInfo")
       if (this.$route.path.substring(1)) {
         var arr = []
@@ -207,10 +209,17 @@
       }
     },
     methods: {
-      onSearch(value) {
+      home() {
         this.$router.push({
-          path: "/search/searchValue=" + value
-        });
+            path: "/index"
+          });
+      },
+      onSearch(value) {
+        if(value.trim()) {
+          this.$router.push({
+            path: "/search/searchValue=" + value
+          });
+        }
       },
       pushmenu(item) {
         this.$router.push({
@@ -375,6 +384,7 @@
   
   .logoName {
     font-size: 20px;
+    cursor: pointer;
   }
   
   .components-input-demo-presuffix .anticon-close-circle {

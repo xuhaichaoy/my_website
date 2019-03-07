@@ -11,6 +11,7 @@ const store = new Vuex.Store({
     logined: false,
     token: '',
     currentUser: {
+      bios: '海超的博客',
       nickName: '海超',
       image: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       userName: '1@qq.com',
@@ -20,7 +21,8 @@ const store = new Vuex.Store({
       id: '1'
     },
     // 用户信息数据,目前只需要avatar 和 name,还是把username也加上吧
-    LoginedUser: {}
+    LoginedUser: {},
+    loading: true
   },
   mutations: {
     // 登录

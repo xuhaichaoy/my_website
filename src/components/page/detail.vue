@@ -63,6 +63,7 @@
     watch:{
       $route(to,from){
         this.detail()
+        document.documentElement.scrollTop = 0
       }
     },
     methods: {

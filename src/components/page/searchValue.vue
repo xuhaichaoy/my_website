@@ -20,13 +20,8 @@
             </div>
           </div>
         </a-card>
-      <div style="text-align: center; margin: 30px">
-        <a-pagination showSizeChanger :pageSize.sync="pageSize" @showSizeChange="onShowSizeChange" :total="allcount" v-model="current" />
-      </div>
       </a-spin>
-      <!-- <a-layout-footer
-            style="text-align: center; background: white"
-          >Ant Design ©2019 Created by Ant UED</a-layout-footer> -->
+      <a-layout-footer style="text-align: center; background: white">Ant Design ©2019 Created by Ant UED</a-layout-footer>
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
@@ -42,27 +37,16 @@
   const showdown = require('showdown')
   const converter = new showdown.Converter()
   export default {
-    name: "pageIndex",
+    name: "pageValue",
     props: {
       msg: String
     },
     data() {
       return {
-        pageSize: 10,
-        current: 1,
         allData: [],
-        allcount: 0,
         spinning: true,
         delayTime: 500,
       };
-    },
-    watch: {
-      pageSize(val) {
-        console.log('pageSize', val);
-      },
-      current(val) {
-        console.log('current', val);
-      }
     },
     computed: {
       contents() {
@@ -72,20 +56,19 @@
       }
     },
     mounted() {
-      this.getdata()
+      this.getSearch()
     },
     methods: {
-      getdata() {
+      getSearch() {
+        const value = this.$route.path.split("=")[1].trim()
         let params = {
-          limit: this.pageSize,
-          page: this.current
+          title: value
         }
-        api.getArtical(params, (res) => {
-          const data = res.data
-          if (data.code === 100) {
-            this.allData = data.data
-            this.allcount = data.count
+        api.searchValue(params, (res) => {
+          const code = res.data.code
+          if (code === 100) {
             this.spinning = false
+            this.allData = res.data.data
           }
         })
       },
@@ -94,11 +77,6 @@
           path: "/article/" + id
         });
       },
-      onShowSizeChange(current, pageSize) {
-        this.current = current
-        this.pageSize = pageSize
-        this.getdata()
-      }
     },
   };
 </script>

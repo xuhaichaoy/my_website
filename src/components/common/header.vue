@@ -207,7 +207,11 @@
       }
     },
     methods: {
-      onSearch() {},
+      onSearch(value) {
+        this.$router.push({
+          path: "/search/searchValue=" + value
+        });
+      },
       pushmenu(item) {
         this.$router.push({
           path: "/" + item.key
@@ -257,7 +261,6 @@
       loginin() {},
       regin() {},
       handleSubmitlogin(e) {
-        // let storage=window.localStorage
         const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {

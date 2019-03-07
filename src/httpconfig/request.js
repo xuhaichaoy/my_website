@@ -51,6 +51,16 @@ let apiUrl = {
     .catch(err => {
       return err
     });
+  },
+  searchValue: function(params, callback) {
+    axios
+    .get("/api/searchValue", {params})
+    .then(res => {
+      callback(res)
+    })
+    .catch(err => {
+      return err
+    });
   }
 }
 

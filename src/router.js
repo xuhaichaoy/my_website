@@ -3,6 +3,7 @@ import pageDoc from './components/page/doc'
 import pageCategory from './components/page/category'
 import pageAbout from './components/page/about'
 import pageDetail from './components/page/detail'
+import pageValue from './components/page/searchValue'
 export default [{
     path: '/',
     component: pageIndex
@@ -27,4 +28,8 @@ export default [{
     path: '/article/:id',
     component: pageDetail
   },
+  {
+    path: '/search/:searchValue',
+    component: pageValue
+  }
 ]

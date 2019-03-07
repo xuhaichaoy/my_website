@@ -1,22 +1,22 @@
 <template>
   <div class="contentRight">
     <div class="detail">
-      <h2>Koa使用指南</h2>
+      <h2>{{ detailData.title }}</h2>
       <div class="tips">
         <a-icon type="calendar" /> Posted on <span>{{ date }}</span>
         <a-divider type="vertical" />
         <a-icon type="tag" />
-        <a-tag color="pink" style="margin-left: 10px">node</a-tag>
+        <a-tag color="pink" style="margin-left: 10px">{{ detailData.tips }}</a-tag>
         <a-divider type="vertical" />
         <a-icon type="folder" />
-        <a-tag color="#108ee9" style="margin-left: 10px">koa2</a-tag>
+        <a-tag color="#108ee9" style="margin-left: 10px">{{ detailData.category }}</a-tag>
         <a-divider type="vertical" />
-        <a-icon type="message" /><span style="margin-left: 10px">23</span>
+        <a-icon type="message" /><span style="margin-left: 10px">{{ detailData.discuss }}</span>
         <a-divider />
       </div>
       <a-spin :spinning="spinning" :delay="delayTime">
         <div class="artContent">
-          <p v-html = 'content'> </p>
+          <p v-html='content'> </p>
         </div>
       </a-spin>
     </div>
@@ -50,6 +50,13 @@
         content: '',
         spinning: true,
         delayTime: 500,
+        detailData: {
+          postDate: '',
+          category: '',
+          discuss: '',
+          tips: '',
+          title: ''
+        }
       };
     },
     mounted() {
@@ -57,17 +64,18 @@
     },
     methods: {
       detail() {
+        const _this = this
         let id = this.$route.path.substring(9)
         let params = {
           id: id
         }
         api.getDetail(params, (res) => {
           const data = res.data
-          if(data.code === 100) {
+          if (data.code === 100) {
+            this.detailData = data.data
             this.content = converter.makeHtml(data.data.content)
             this.spinning = false
           }
-
         })
       }
     }
@@ -157,10 +165,12 @@
     text-align: center;
     font-size: 20px;
   }
+  
   .artContent {
     text-align: left;
   }
-  .spin-content{
+  
+  .spin-content {
     border: 1px solid #91d5ff;
     background-color: #e6f7ff;
     padding: 30px;

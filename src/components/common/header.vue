@@ -130,6 +130,7 @@
                 </div>
               </div>
               <div v-if="logined">
+                <a-icon type="file-add" class="bell" @click = "publish"/>
                 <a-icon type="bell" class="bell" @click="bell" />
                 <a-icon type="setting" class="setting" @click="setting" />
                 <a-icon type="logout" class="setting" @click="logout" />
@@ -346,6 +347,11 @@
         console.log(fileList)
         this.fileList = fileList
       },
+      publish() {
+        this.$router.push({
+          path: "/publish"
+        })
+      }
     }
   }
 </script>

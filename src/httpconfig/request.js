@@ -1,4 +1,6 @@
 import axios from '../httpconfig/http'
+import qs from 'qs';
+
 let apiUrl = {
   login: function (params, callback) {
     axios
@@ -14,7 +16,9 @@ let apiUrl = {
   },
   reg: function (params, callback) {
     axios
-      .get("/reg", {params})
+      .get("/reg", {
+        params
+      })
       .then(res => {
         callback(res)
       })
@@ -22,55 +26,75 @@ let apiUrl = {
         return err
       });
   },
-  getInfo: function(params, callback) {
+  getInfo: function (params, callback) {
     axios
-    .get("/api/userInfo", {params})
-    .then(res => {
-      callback(res)
-    })
-    .catch(err => {
-      return err
-    });
+      .get("/api/userInfo", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   },
-  getArtical: function(params, callback) {
+  getArtical: function (params, callback) {
     axios
-    .get("/api/getArtical", {params})
-    .then(res => {
-      callback(res)
-    })
-    .catch(err => {
-      return err
-    });
+      .get("/api/getArtical", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   },
-  getDetail: function(params, callback) {
+  getDetail: function (params, callback) {
     axios
-    .get("/api/getDetail", {params})
-    .then(res => {
-      callback(res)
-    })
-    .catch(err => {
-      return err
-    });
+      .get("/api/getDetail", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   },
-  searchValue: function(params, callback) {
+  searchValue: function (params, callback) {
     axios
-    .get("/api/searchValue", {params})
-    .then(res => {
-      callback(res)
-    })
-    .catch(err => {
-      return err
-    });
+      .get("/api/searchValue", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   },
-  getlist: function(params, callback) {
+  getlist: function (params, callback) {
     axios
-    .get("/api/getlist", {params})
-    .then(res => {
-      callback(res)
-    })
-    .catch(err => {
-      return err
-    });
+      .get("/api/getlist", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
+  publish: function (params, callback) {
+    axios
+      .post("/api/publish", params)
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   }
 }
 

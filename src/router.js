@@ -4,6 +4,7 @@ import pageCategory from './components/page/category'
 import pageAbout from './components/page/about'
 import pageDetail from './components/page/detail'
 import pageValue from './components/page/searchValue'
+import pagePublish from './components/page/publish'
 export default [{
     path: '/',
     component: pageIndex
@@ -31,5 +32,9 @@ export default [{
   {
     path: '/search/:searchValue',
     component: pageValue
+  },
+  {
+    path: '/publish',
+    component: pagePublish
   }
 ]

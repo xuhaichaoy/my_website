@@ -1,32 +1,35 @@
 <template>
   <div class="contentRight">
     <div class="setting">
+      <a-breadcrumb>
+        <a-breadcrumb-item><a href="javascript:;" @click="push('index')" class="clearStyle">Home</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="javascript:;" @click="push('publish')" class="clearStyle">Publish</a></a-breadcrumb-item>
+      </a-breadcrumb>
       <div class="editor-wrap">
-        <textarea id="editor" name="editor" ref="mycode">
-                      </textarea>
+        <textarea id="editor" name="editor" ref="mycode"></textarea>
       </div>
-      <div style="text-align: right">
-        <a-button @click="publish">发布</a-button>
+      <div>
+        <a-button @click="publish" style="margin-top: 20px; margin-left: 26px">发布</a-button>
       </div>
       <a-modal title="发布文章" v-model="visible" :footer="null">
         <a-form :form="form" @submit="handleSubmit">
           <a-form-item label="标题" :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }">
             <a-input v-decorator="[
-                  'title',
-                  {rules: [{ required: true, message: 'Please input your note!' }]}
-                ]" />
+                        'title',
+                        {rules: [{ required: true, message: 'Please input your title!' }]}
+                      ]" />
           </a-form-item>
           <a-form-item label="分类" :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }">
             <a-input v-decorator="[
-                  'category',
-                  {rules: [{ required: true, message: 'Please input your category!' }]}
-                ]" />
+                        'category',
+                        {rules: [{ required: true, message: 'Please input your category!' }]}
+                      ]" />
           </a-form-item>
           <a-form-item label="标签" :label-col="{ span: 4 }" :wrapper-col="{ span: 12 }">
             <a-input v-decorator="[
-                  'tips',
-                  {rules: [{ required: true, message: 'Please input your tips!' }]}
-                ]" />
+                        'tips',
+                        {rules: [{ required: true, message: 'Please input your tips!' }]}
+                      ]" />
           </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 4 }">
             <a-button type="primary" html-type="submit">
@@ -62,6 +65,8 @@
       };
     },
     mounted() {
+      const _this = this
+      const storage = window.localStorage
       let myTextarea = document.getElementById('editor');
       this.CodeMirrorEditor = CodeMirror.fromTextArea(myTextarea, {
         mode: 'markdown', //编辑器语言
@@ -69,22 +74,22 @@
         extraKeys: {},
         lineNumbers: true //显示行号
       });
-      this.CodeMirrorEditor.setSize('auto', '70vh')
+      this.CodeMirrorEditor.setSize('auto', '60vh')
+      this.CodeMirrorEditor.setValue(storage.getItem('article'))
+      this.CodeMirrorEditor.on("change", function() {
+        _this.val = _this.CodeMirrorEditor.getValue()
+        storage.setItem("article", _this.val)
+      });
     },
     methods: {
       publish() {
         this.visible = true
-        this.val = this.CodeMirrorEditor.getValue()
       },
       handleSubmit(e) {
         e.preventDefault();
         this.form.validateFields((err, values) => {
           if (!err) {
             let time = new Date()
-            console.log(new Date().getFullYear())
-            console.log(new Date().getMonth() + 1)
-            console.log(new Date().getDate())
-            
             let str = ''
             str += time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
             values.val = this.val
@@ -97,6 +102,11 @@
           }
         });
       },
+      push(router) {
+        this.$router.push({
+          path: "/" + router
+        })
+      }
     },
   };
 </script>
@@ -133,10 +143,15 @@
   
   .editor-wrap {
     width: 100%;
-    height: 70vh;
+    height: 60vh;
     display: inline-block;
     padding-bottom: 20px;
     box-sizing: border-box;
     background: beige;
+    margin-top: 30px;
+  }
+  
+  .clearStyle {
+    text-decoration: none;
   }
 </style>

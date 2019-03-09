@@ -99,7 +99,7 @@ export default {
 .hrefs {
   margin-top: 10px;
 }
-.hrefs > a {
+.hrefs a {
   display: inline-block;
   color: rgba(0, 0, 0, 0.65);
   text-decoration:none;

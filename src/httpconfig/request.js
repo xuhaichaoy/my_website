@@ -1,12 +1,9 @@
 import axios from '../httpconfig/http'
-import qs from 'qs';
 
 let apiUrl = {
   login: function (params, callback) {
     axios
-      .get("/login", {
-        params
-      })
+      .post("/login", params)
       .then(res => {
         callback(res)
       })
@@ -16,9 +13,7 @@ let apiUrl = {
   },
   reg: function (params, callback) {
     axios
-      .get("/reg", {
-        params
-      })
+      .post("/reg", params)
       .then(res => {
         callback(res)
       })

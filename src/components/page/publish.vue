@@ -55,6 +55,7 @@
   import 'codemirror/addon/hint/javascript-hint'
   import 'codemirror/addon/hint/html-hint'
   import api from '../../httpconfig/request'
+  const storage = window.localStorage
   export default {
     name: "publish",
     data() {
@@ -65,8 +66,13 @@
       };
     },
     mounted() {
+      console.log(this.$store.state.LoginedUser.id)
+      if(!this.$store.state.LoginedUser.id) {
+        this.$router.push({
+          path: "/index"
+        })
+      }
       const _this = this
-      const storage = window.localStorage
       let myTextarea = document.getElementById('editor');
       this.CodeMirrorEditor = CodeMirror.fromTextArea(myTextarea, {
         mode: 'markdown', //编辑器语言
@@ -75,7 +81,10 @@
         lineNumbers: true //显示行号
       });
       this.CodeMirrorEditor.setSize('auto', '60vh')
-      this.CodeMirrorEditor.setValue(storage.getItem('article'))
+      if(storage.getItem('article')) {
+        this.CodeMirrorEditor.setValue(storage.getItem('article'))
+        this.val = storage.getItem('article')
+      }
       this.CodeMirrorEditor.on("change", function() {
         _this.val = _this.CodeMirrorEditor.getValue()
         storage.setItem("article", _this.val)
@@ -96,9 +105,17 @@
             values.postDate = str
             values.artical_id = this.$store.state.LoginedUser.id
             api.publish(values, (res) => {
-              console.log(res)
+              if(res.data.data.code === 100) {
+                this.visible = false
+                this.$message.success('发布成功！')
+                this.CodeMirrorEditor.setValue('')
+                this.val = ''
+                storage.removeItem("article")
+              }else {
+                this.visible = false
+                this.$message.success('发布失败！')
+              }
             })
-            console.log('Received values of form: ', values);
           }
         });
       },

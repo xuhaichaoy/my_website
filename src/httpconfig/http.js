@@ -10,7 +10,7 @@ import cookie from 'js-cookie'
 // axios默认配置
 axios.defaults.timeout = 10000 // 超时时间
 axios.defaults.baseURL = apiURL // 默认地址
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 //整理数据
 axios.defaults.transformRequest = function (data) {
   data = Qs.stringify(data)
@@ -22,7 +22,7 @@ axios.defaults.transformRequest = function (data) {
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-    //config.data = JSON.stringify(config.data);  
+    //config.data = JSON.stringify(config.data)  
     // config.headers['Content-Type'] = 'application/json;charset=UTF-8'
     //判断是否存在ticket，如果存在的话，则每个http header都加上ticket
     if (cookie.get("token")) {

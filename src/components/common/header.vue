@@ -335,6 +335,9 @@
       logout() {
         this.$store.dispatch("logout")
         this.$message.success('退出成功！')
+        this.$router.push({
+          path: "/index"
+        })
       },
       handleCancel() {
         this.previewVisible = false

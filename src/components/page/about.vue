@@ -1,189 +1,182 @@
 <template>
   <div class="contentRight">
-    <div class="tps">
-      <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
-      <span style="margin-left: 10px">{{ intru }}</span>
-      <a-divider orientation="left">博客简介</a-divider>
-      <p>本博客使用的技术为 Vue v3.4.0 + antd</p>
-      <p>
-        源码地址为
-        <a href="https://github.com/xuhaichaoy/my_website">github</a>，仅供参考，不做商业用途！
-      </p>
-      <a-divider orientation="left">个人简介</a-divider>
-      <ul>
-        <li>姓名：海超</li>
-        <li>学历专业：本科
-          <a-divider type="vertical"/>软件工程
-        </li>
-        <li>联系方式：
-          <a-icon type="qq"/>392282002
-          <a-divider type="vertical"/>
-          <a-icon type="mail"/>xuhaichaoy@163.com
-        </li>
-        <li>地点：北京市</li>
-        <li>
-          <span>技能</span>
-          <ul>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>技能</span>
-          <ul>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <span>技能</span>
-          <ul>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-            <li>HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <a-rate v-model="value" style="margin-left: 10px"/>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <a-list
-        v-if="comments.length"
-        :dataSource="comments"
-        :header="`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`"
-        itemLayout="horizontal"
-      >
-        <a-list-item slot="renderItem" slot-scope="item, index">
-          <a-comment
-            :author="item.author"
-            :avatar="item.avatar"
-            :content="item.content"
-            :datetime="item.datetime"
-          ></a-comment>
-        </a-list-item>
-      </a-list>
-      <a-comment>
-        <a-avatar
-          slot="avatar"
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
-        />
-        <div slot="content">
-          <a-form-item>
-            <a-textarea :rows="4" @change="handleChange" :value="value1"></a-textarea>
-          </a-form-item>
-          <a-form-item>
-            <a-button
-              htmlType="submit"
-              :loading="submitting"
-              @click="handleSubmit"
-              type="primary"
-            >Add Comment</a-button>
-          </a-form-item>
-        </div>
-      </a-comment>
-    </div>
+    <a-list
+      v-if="comments.length"
+      :dataSource="comments"
+      :header="`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`"
+      itemLayout="horizontal"
+    >
+      <a-list-item slot="renderItem" slot-scope="item, index">
+        <a-comment
+          :author="item.author"
+          :avatar="item.image"
+          :content="item.comment"
+          :datetime="item.date"
+        >
+        <template slot="actions">
+          <span>
+            <a-tooltip title="Like">
+              <a-icon
+                type="like"
+                :theme="action === 'liked' ? 'filled' : 'outlined'"
+                @click="like"
+              />
+            </a-tooltip>
+            <span style="padding-left: '8px';cursor: 'auto'">
+              {{likes}}
+            </span>
+          </span>
+          <span>
+            <a-tooltip title="Dislike">
+              <a-icon
+                type="dislike"
+                :theme="action === 'disliked' ? 'filled' : 'outlined'"
+                @click="dislike"
+              />
+            </a-tooltip>
+            <span style="padding-left: '8px';cursor: 'auto'">
+              {{dislikes}}
+            </span>
+          </span>
+          <span>Reply to</span>
+        </template>
+      <a slot="author">Han Solo</a>
+      <a-avatar
+        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+        alt="Han Solo"
+        slot="avatar"
+      />
+      <p slot="content">We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.</p>
+      <a-tooltip slot="datetime" :title="moment().format('YYYY-MM-DD HH:mm:ss')">
+        <span>{{moment().fromNow()}}</span>
+      </a-tooltip>
+        </a-comment>
+      </a-list-item>
+    </a-list>
+    <a-comment>
+      <a-avatar
+        slot="avatar"
+        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+        alt="Han Solo"
+      />
+      <div slot="content">
+        <a-form-item>
+          <a-textarea :rows="4" @change="handleChange" :value="value" ></a-textarea>
+        </a-form-item>
+        <a-form-item>
+          <a-button
+            htmlType="submit"
+            :loading="submitting"
+            @click="handleSubmit"
+            type="primary"
+          >
+            Add Comment
+          </a-button>
+        </a-form-item>
+      </div>
+    </a-comment>
   </div>
 </template>
 
 <script>
-import moment from "moment";
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
-  },
-  data() {
-    return {
-      intru: "前端小白一枚，还在学习当中～",
-      value: 2,
-      comments: [],
-      submitting: false,
-      value1: "",
-      moment
-    };
-  },
-  methods: {
-    handleSubmit() {
-      if (!this.value1) {
-        return;
-      }
-
-      this.submitting = true;
-
-      setTimeout(() => {
-        this.submitting = false;
-        this.comments = [
-          {
-            author: "Han Solo",
-            avatar:
-              "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            content: this.value1,
-            datetime: moment().fromNow()
-          },
-          ...this.comments
-        ];
-        this.value1 = "";
-      }, 1000);
+  import moment from "moment"
+  import api from '../../httpconfig/request'
+  export default {
+    name: "about",
+    props: {
+      msg: String
     },
-    handleChange(e) {
-      this.value1 = e.target.value;
+    data() {
+      return {
+        likes: 0,
+        dislikes: 0,
+        action: null,
+        moment,
+        comments: [],
+        submitting: false,
+        value: '',
+        moment,
+      };
+    },
+    mounted() {
+      this.$store.dispatch("getInfo")
+      this.getComment()
+    },
+    methods: {
+      like() {
+        this.likes = 1
+        this.dislikes = 0
+        this.action = 'liked'
+      },
+      dislike() {
+        this.likes = 0
+        this.dislikes = 1
+        this.action = 'disliked'
+      },
+      handleSubmit() {
+        if (!this.value) {
+          return;
+        }
+        let time = new Date()
+        let str = ''
+        str += time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
+        let params = {
+          image: this.$store.state.LoginedUser.image,
+          artical_id: this.$store.state.LoginedUser.id,
+          comment: this.value,
+          author: this.$store.state.LoginedUser.nickName,
+          date: str
+        }
+        api.addComment(params, (res) => {
+          if(res.data.data.code === 100) {
+            this.$message.success('发布成功')
+            this.submitting = true
+            this.value = ''
+          }
+        })
+      },
+      handleChange(e) {
+        this.value = e.target.value
+      },
+      getComment() {
+        api.getComment('', (res) => {
+          console.log(res)
+          if(res.data.code === 100) {
+            this.comments = res.data.data
+          }
+        })
+      }
     }
-  }
-};
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul {
-  list-style-type: disc;
-  padding: 0;
-}
-li {
-  /* display: inline-block; */
-  margin: 10px 16px;
-  list-style-type: disc;
-}
-a {
-  color: #42b983;
-}
-.contentRight {
-  width: 100%;
-  overflow: hidden;
-  text-align: left;
-  padding-right: 300px;
-}
-@media screen and (max-width: 1200px) {
-  .contentRight {
-    padding-right: 0!important;
+  ul {
+    list-style-type: disc;
+    padding: 0;
   }
-}
+  
+  li {
+    /* display: inline-block; */
+    margin: 10px 16px;
+    list-style-type: disc;
+  }
+  
+  a {
+    color: #42b983;
+  }
+  
+  .contentRight {
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+    padding-right: 300px;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .contentRight {
+      padding-right: 0!important;
+    }
+  }
 </style>

@@ -90,6 +90,28 @@ let apiUrl = {
       .catch(err => {
         return err
       });
+  },
+  addComment: function (params, callback) {
+    axios
+      .post("/api/comment", params)
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
+  getComment: function (params, callback) {
+    axios
+      .get("/api/getComment", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   }
 }
 

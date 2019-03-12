@@ -40,24 +40,14 @@
           </span>
           <span>Reply to</span>
         </template>
-      <a slot="author">Han Solo</a>
-      <a-avatar
-        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        alt="Han Solo"
-        slot="avatar"
-      />
-      <p slot="content">We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.</p>
-      <a-tooltip slot="datetime" :title="moment().format('YYYY-MM-DD HH:mm:ss')">
-        <span>{{moment().fromNow()}}</span>
-      </a-tooltip>
         </a-comment>
       </a-list-item>
     </a-list>
     <a-comment>
       <a-avatar
         slot="avatar"
-        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        alt="Han Solo"
+        :src="image"
+        :alt="nickName"
       />
       <div slot="content">
         <a-form-item>
@@ -96,11 +86,15 @@
         submitting: false,
         value: '',
         moment,
+        image: '',
+        nickName: ''
       };
     },
     mounted() {
       this.$store.dispatch("getInfo")
       this.getComment()
+      this.image = this.$store.state.LoginedUser.image
+      this.nickName = this.$store.state.LoginedUser.nickName
     },
     methods: {
       like() {
@@ -127,11 +121,13 @@
           author: this.$store.state.LoginedUser.nickName,
           date: str
         }
+        this.submitting = true
         api.addComment(params, (res) => {
           if(res.data.data.code === 100) {
             this.$message.success('发布成功')
-            this.submitting = true
             this.value = ''
+            this.submitting = false
+            this.getComment()
           }
         })
       },
@@ -140,7 +136,6 @@
       },
       getComment() {
         api.getComment('', (res) => {
-          console.log(res)
           if(res.data.code === 100) {
             this.comments = res.data.data
           }

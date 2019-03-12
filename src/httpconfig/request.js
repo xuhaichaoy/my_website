@@ -112,6 +112,30 @@ let apiUrl = {
       .catch(err => {
         return err
       });
+  },
+  getCategory: function (params, callback) {
+    axios
+      .get("/api/getCategory", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
+  getCvalue: function (params, callback) {
+    axios
+      .get("/api/getCvalue", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
   }
 }
 

@@ -67,9 +67,9 @@
       getSearch() {
         const value = this.$route.path.split("=")[1].trim()
         let params = {
-          title: value
+          category: value
         }
-        api.searchValue(params, (res) => {
+        api.getCvalue(params, (res) => {
           const code = res.data.code
           if (code === 100) {
             this.spinning = false

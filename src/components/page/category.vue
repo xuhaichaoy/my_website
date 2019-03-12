@@ -41,10 +41,8 @@
       },
       getCategory() {
         api.getCategory('', (res) => {
-          console.log(res)
           if (res.data.code === 100) {
             this.alldata = res.data.data
-            console.log(res.data.data)
           }
         })
       }

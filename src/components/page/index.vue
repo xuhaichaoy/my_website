@@ -58,10 +58,10 @@
     },
     watch: {
       pageSize(val) {
-        console.log('pageSize', val);
+        // console.log('pageSize', val);
       },
       current(val) {
-        console.log('current', val);
+        // console.log('current', val);
       }
     },
     computed: {

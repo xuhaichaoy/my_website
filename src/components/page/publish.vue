@@ -66,7 +66,7 @@
       };
     },
     mounted() {
-      console.log(this.$store.state.LoginedUser.id)
+      // console.log(this.$store.state.LoginedUser.id)
       if(!this.$store.state.LoginedUser.id) {
         this.$router.push({
           path: "/index"

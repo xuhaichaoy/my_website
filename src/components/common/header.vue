@@ -134,7 +134,7 @@
                 <a-icon type="bell" class="bell" @click="bell" />
                 <a-icon type="setting" class="setting" @click="setting" />
                 <a-icon type="logout" class="setting" @click="logout" />
-                <a-avatar class="avatar" @click="showDrawer" src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+                <a-avatar class="avatar" @click="showDrawer" :src="info.image" />
               </div>
               <a-drawer title="个人信息" placement="right" :closable="false" @close="onClose" :visible="visible" width="36%">
                 <p class="clearfix">
@@ -198,6 +198,10 @@
     computed: {
       logined() {
         return this.$store.state.logined
+      },
+      info() {
+        this.fileList[0].url = this.$store.state.LoginedUser.image
+        return this.$store.state.LoginedUser
       }
     },
     mounted() {
@@ -254,10 +258,10 @@
       showModalreg() {
         this.regvisible = true
       },
-      handleCancel1(e) {
+      handleCancel1() {
         this.loginvisible = false
       },
-      handleCancel2(e) {
+      handleCancel2() {
         this.regvisible = false
       },
       reg() {
@@ -271,7 +275,7 @@
       loginin() {},
       regin() {},
       handleSubmitlogin(e) {
-        const _this = this
+        // const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
@@ -295,7 +299,7 @@
         });
       },
       handleSubmitreg(e) {
-        const _this = this
+        // const _this = this
         e.preventDefault()
         this.form.validateFields((err, values) => {
           if (!err) {
@@ -316,17 +320,11 @@
         });
       },
       bell() {
-        api.getInfo('', (res) => {
-          console.log(res)
-        })
-        console.log(123123)
       },
       setting() {
-        console.log(2222)
       },
       showDrawer() {
         this.currentUser = this.$store.state.LoginedUser
-        console.log(this.currentUser)
         this.visible = true
       },
       onClose() {
@@ -347,7 +345,6 @@
         this.previewVisible = true
       },
       handleChange({fileList}) {
-        console.log(fileList)
         this.fileList = fileList
       },
       publish() {

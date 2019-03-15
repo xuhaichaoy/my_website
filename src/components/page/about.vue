@@ -128,6 +128,9 @@
             this.value = ''
             this.submitting = false
             this.getComment()
+          }else {
+            this.$message.warning('请先登录！！！')
+            this.submitting = false
           }
         })
       },

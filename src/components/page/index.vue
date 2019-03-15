@@ -1,6 +1,7 @@
 <template>
   <div class="contentRight">
     <div class="card">
+      
       <a-spin :spinning="spinning" :delay="delayTime">
         <a-card v-for="(key,index) in allData" :key="index" @click="detail(key.id)" :title="key.title" :hoverable="true" class="cards" :id="key.title">
           <a href="#" slot="extra">more</a>

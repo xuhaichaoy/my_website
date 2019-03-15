@@ -192,7 +192,6 @@
           status: 'done',
           url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
         }],
-  
       };
     },
     computed: {
@@ -211,6 +210,15 @@
         var arr = []
         arr.push(this.$route.path.substring(1))
         this.current = arr
+      }
+    },
+    watch:{
+      $route(to,from){
+        if (this.$route.path.substring(1)) {
+        var arr = []
+        arr.push(this.$route.path.substring(1))
+        this.current = arr
+      }
       }
     },
     methods: {

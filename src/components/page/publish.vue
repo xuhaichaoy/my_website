@@ -51,7 +51,7 @@
   import 'codemirror/mode/javascript/javascript'
   import 'codemirror/mode/vue/vue'
   import 'codemirror/keymap/sublime.js'
-  import 'codemirror/addon/hint/css-hint'　
+  import 'codemirror/addon/hint/css-hint'
   import 'codemirror/addon/hint/javascript-hint'
   import 'codemirror/addon/hint/html-hint'
   import api from '../../httpconfig/request'

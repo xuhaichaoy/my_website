@@ -18,7 +18,7 @@ const store = new Vuex.Store({
       introduction: '前端小白一枚～',
       github: 'https://github.com/xuhaichaoy',
       wechat: '',
-      id: '1'
+      id: '11'
     },
     // 用户信息数据,目前只需要avatar 和 name,还是把username也加上吧
     LoginedUser: {},

@@ -172,6 +172,8 @@
   
   .artContent {
     text-align: left;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .spin-content {

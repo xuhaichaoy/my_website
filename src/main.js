@@ -16,7 +16,8 @@ Vue.use(Antd)
 
 const RouterConfig = {
   mode: 'history',
-  routes: Routers
+  base: '/hc/',
+  routes: Routers,
 }
 const router = new VueRouter(RouterConfig)
 

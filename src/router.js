@@ -1,11 +1,12 @@
-import pageIndex from './components/page/index'
-import pageDoc from './components/page/doc'
-import pageCategory from './components/page/category'
-import pageAbout from './components/page/about'
-import pageDetail from './components/page/detail'
-import pageValue from './components/page/searchValue'
-import pagePublish from './components/page/publish'
-import pageCvalue from  './components/page/cvalue'
+
+const pageIndex = () => import ('./components/page/index')
+const pageDoc = () => import ('./components/page/doc')
+const pageCategory = () => import ('./components/page/category')
+const pageAbout = () => import ( './components/page/about')
+const pageDetail = () => import ( './components/page/detail')
+const pageValue = () => import ('./components/page/searchValue')
+const pagePublish = () => import ('./components/page/publish')
+const pageCvalue = () => import ('./components/page/cvalue')
 
 export default [{
     path: '/',

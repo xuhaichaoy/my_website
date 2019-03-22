@@ -17,10 +17,10 @@ module.exports = {
     configureWebpack: config => {
         if (isProduction) {
             config.externals = {
-                'Vue': 'vue',
-                'VueRouter': 'vueRouter',
-                'Vuex': 'vuex',
-                'Axios': 'axios'
+                // 'Vue': 'vue',
+                // 'VueRouter': 'vueRouter',
+                // 'Vuex': 'vuex',
+                // 'Axios': 'axios'
             }
             config.plugins.push(new CompressionWebpackPlugin({
                 algorithm: 'gzip',

@@ -143,15 +143,15 @@ const RouterConfig = {
   base: '/',
   routes: Routers,
 }
-var router = new VueRouter(RouterConfig)
+const router = new VueRouter(RouterConfig)
 
-router.beforeEach(function (to, from, next) {  
+router.beforeEach(function (to, from, next) { 
   const nextRoute = ['publish']
   // const auth = store.state.auth 
   //跳转至上述3个页面  
   if (nextRoute.indexOf(to.name) >= 0) {  
       //未登录  
-      if (!this.$store.state.logined) {  
+      if (!store.state.logined) {  
           router.push({name: 'index'})  
       }  
   }  

@@ -1,3 +1,3 @@
-const apiUrl = '';
+const apiUrl = 'http://106.13.113.36:3000';
 
  export default apiUrl

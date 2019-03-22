@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import cookie from 'js-cookie'
 import api from '../httpconfig/request'
-
+import cookie from 'js-cookie'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -33,6 +33,7 @@ const store = new Vuex.Store({
     // 登出
     LOGOUT(state) {
       state.logined = false
+      state.LoginedUser = {}
       state.LoginedUser.nickName = ""
       state.LoginedUser.github = ""
       state.LoginedUser.image = ""
@@ -40,7 +41,7 @@ const store = new Vuex.Store({
       state.LoginedUser.introduction = ""
       state.LoginedUser.wechat = ""
       state.LoginedUser.id = ""
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      cookie.set("token", '', -1)
     },
     GETINFO(state) {
       api.getInfo('', (res) => {

@@ -1,4 +1,3 @@
-const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const productionGzipExtensions = ['js', 'css']
 const isProduction = process.env.NODE_ENV === 'production'
@@ -17,6 +16,12 @@ module.exports = {
     chainWebpack: () => {},
     configureWebpack: config => {
         if (isProduction) {
+            config.externals = {
+                'Vue': 'vue',
+                'VueRouter': 'vueRouter',
+                'Vuex': 'vuex',
+                'Axios': 'axios'
+            }
             config.plugins.push(new CompressionWebpackPlugin({
                 algorithm: 'gzip',
                 test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
@@ -53,12 +58,12 @@ module.exports = {
     // // webpack-dev-server 相关配置
     devServer: {
         open: process.platform === 'darwin',
-        host: '',
+        host: 'localhost',
         port: 8080,
         https: false,
         hotOnly: false,
         proxy: null, // 设置代理
-        before: app => {}
+        // before: app => {}
     },
     // 第三方插件配置
     pluginOptions: {

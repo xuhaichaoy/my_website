@@ -91,6 +91,7 @@
       };
     },
     mounted() {
+      console.log(this.$store.state)
       this.$store.dispatch("getInfo")
       this.getComment()
       this.image = this.$store.state.LoginedUser.image

@@ -1,18 +1,18 @@
 /**
  * ajax请求配置
  */
-import axios from 'axios'
+import Axios from 'axios'
 import apiURL from './api.js'
 import Qs from 'qs'
 
 import cookie from 'js-cookie'
 
 // axios默认配置
-axios.defaults.timeout = 10000 // 超时时间
-axios.defaults.baseURL = apiURL // 默认地址
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Axios.defaults.timeout = 10000 // 超时时间
+Axios.defaults.baseURL = apiURL // 默认地址
+Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 //整理数据
-axios.defaults.transformRequest = function (data) {
+Axios.defaults.transformRequest = function (data) {
   data = Qs.stringify(data)
   // data = JSON.stringify(data)
   return data
@@ -20,7 +20,7 @@ axios.defaults.transformRequest = function (data) {
 
 // 路由请求拦截
 // http request 拦截器
-axios.interceptors.request.use(
+Axios.interceptors.request.use(
   config => {
     //config.data = JSON.stringify(config.data)  
     // config.headers['Content-Type'] = 'application/json;charset=UTF-8'
@@ -39,10 +39,10 @@ axios.interceptors.request.use(
 
 // 路由响应拦截
 // http response 拦截器
-axios.interceptors.response.use(
+Axios.interceptors.response.use(
   response => {
     if (response.data.resultCode == "404") {
-      console.log("response.data.resultCode是404")
+      // console.log("response.data.resultCode是404")
       // 返回 错误代码-1 清除ticket信息并跳转到登录页面
       //      cookie.del("ticket")
       //      window.location.href='http://login.com'
@@ -54,4 +54,4 @@ axios.interceptors.response.use(
   error => {
     return Promise.reject(error.response) // 返回接口返回的错误信息
   });
-export default axios;
+export default Axios;

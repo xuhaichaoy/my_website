@@ -1,12 +1,29 @@
 <template>
   <div class="contentRight">
+    <div v-if="!loading">
+      <a-card :hoverable="true" class="cards">
+        <a-skeleton active avatar title :paragraph="{rows: 3}"/>
+      </a-card>
+      <a-card :hoverable="true" class="cards">
+        <a-skeleton active avatar title :paragraph="{rows: 3}"/>
+      </a-card>
+      <a-card :hoverable="true" class="cards">
+        <a-skeleton active avatar title :paragraph="{rows: 3}"/>
+      </a-card>
+      <a-card :hoverable="true" class="cards">
+        <a-skeleton active avatar title :paragraph="{rows: 3}"/>
+      </a-card>
+      <a-card :hoverable="true" class="cards">
+        <a-skeleton active avatar title :paragraph="{rows: 3}"/>
+      </a-card>
+    </div>
     <a-list
       v-if="comments.length"
       :dataSource="comments"
       :header="`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`"
       itemLayout="horizontal"
     >
-      <a-list-item slot="renderItem" slot-scope="item, index">
+      <a-list-item slot="renderItem" slot-scope="item">
         <a-comment
           :author="item.author"
           :avatar="item.image"
@@ -85,9 +102,9 @@
         comments: [],
         submitting: false,
         value: '',
-        moment,
         image: '',
-        nickName: ''
+        nickName: '',
+        loading: false
       };
     },
     mounted() {
@@ -142,6 +159,7 @@
           if(res.data.code === 100) {
             this.comments = res.data.data
           }
+          this.loading = true
         })
       }
     }
@@ -171,6 +189,14 @@
     text-align: left;
     padding-right: 300px;
   }
+  .cards {
+    margin-top: 10px;
+  }
+
+  .cards:hover {
+    background: rgb(238, 250, 254);
+  }
+
   
   @media screen and (max-width: 1200px) {
     .contentRight {

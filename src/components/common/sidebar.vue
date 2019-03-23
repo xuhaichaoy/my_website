@@ -20,7 +20,7 @@
         <div class="article">
           <a-divider orientation="left" style="margin: 0; padding: 16px 0">最近文章</a-divider>
           <ul>
-            <li v-for="(key, index) in alldata" :key="index"><a href="javascript:;" @click="detail(key.id)">{{ key.title }}</a></li>
+            <li v-for="(key, index) in alldata" :key="index" @click="detail(key.id)" style="cursor: pointer"><a href="javascript:;" >{{ key.title }}</a></li>
           </ul>
         </div>
         <div style="border-right: 1px solid #e8e8e8; ">

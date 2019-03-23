@@ -1,42 +1,57 @@
 <template>
   <div class="contentRight">
     <div class="card">
-      <!-- <a-skeleton active/> -->
-        <a-card
-          v-for="(key,index) in allData"
-          :key="index"
-          @click="detail(key.id)"
-          :title="key.title"
-          :hoverable="true"
-          class="cards"
-          :id="key.title"
-        >
-          <a href="#" slot="extra">more</a>
-          <div class="test_demo" v-html="contents(key.content)"></div>
-          <a-divider dashed/>
-          <div class="cardBottom">
-            <a-icon type="message"/>
-            <span class="spans">{{ key.discuss }}</span>
-            <a-divider type="vertical"/>
-            <a-icon type="tag"/>
-            <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
-            <a-divider type="vertical"/>
-            <a-icon type="folder"/>
-            <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
-            <div style="float: right">
-              <span style="margin-left:4px">{{ key.postDate }}</span>
-            </div>
-          </div>
-        </a-card>
-        <div style="text-align: center; margin: 30px" v-if="allData.length > 0">
-          <a-pagination
-            showSizeChanger
-            :pageSize.sync="pageSize"
-            @showSizeChange="onShowSizeChange"
-            :total="allcount"
-            v-model="current"
-          />
+      <div class="sping" v-if="allData.length == 0">
+        <div>
+          <a-card :hoverable="true" class="cards">
+            <a-skeleton active :paragraph="{rows: 7}"/>
+          </a-card>
+          <a-card :hoverable="true" class="cards">
+            <a-skeleton active :paragraph="{rows: 7}"/>
+          </a-card>
+          <a-card :hoverable="true" class="cards">
+            <a-skeleton active :paragraph="{rows: 7}"/>
+          </a-card>
+          <a-card :hoverable="true" class="cards">
+            <a-skeleton active :paragraph="{rows: 7}"/>
+          </a-card>
         </div>
+      </div>
+      <a-card
+        v-for="(key,index) in allData"
+        :key="index"
+        @click="detail(key.id)"
+        :title="key.title"
+        :hoverable="true"
+        class="cards"
+        :id="key.title"
+      >
+        <a href="#" slot="extra">more</a>
+        <div class="test_demo" v-html="contents(key.content)"></div>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message"/>
+          <span class="spans">{{ key.discuss }}</span>
+          <a-divider type="vertical"/>
+          <a-icon type="tag"/>
+          <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
+          <a-divider type="vertical"/>
+          <a-icon type="folder"/>
+          <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
+          <div style="float: right">
+            <span style="margin-left:4px">{{ key.postDate }}</span>
+          </div>
+        </div>
+      </a-card>
+      <div style="text-align: center; margin: 30px" v-if="allData.length > 0">
+        <a-pagination
+          showSizeChanger
+          :pageSize.sync="pageSize"
+          @showSizeChange="onShowSizeChange"
+          :total="allcount"
+          v-model="current"
+        />
+      </div>
       <!-- <a-layout-footer
             style="text-align: center; background: white"
       >Ant Design ©2019 Created by Ant UED</a-layout-footer>-->
@@ -69,7 +84,7 @@ export default {
       pageSize: 10,
       current: 1,
       allData: [],
-      allcount: 0,
+      allcount: 0
     };
   },
   watch: {

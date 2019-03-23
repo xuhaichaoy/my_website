@@ -2,10 +2,10 @@
   <div>
     <div class="header">
       <a-row>
-        <a-col class="clos" :xs="5" :sm="5" :md="5" :lg="5" :xl="5" :xll="4">
+        <a-col class="clos" :xs="24" :sm="8" :md="5" :lg="5" :xl="5" :xll="4">
           <span class="logoName" @click="home">{{ bios }}</span>
         </a-col>
-        <a-col class="clos" :xs="19" :sm="19" :md="19" :lg="19" :xl="19" :xll="20">
+        <a-col class="clos" :xs="0" :sm="16" :md="19" :lg="19" :xl="19" :xll="20">
           <a-row>
             <a-col :xs="0" :sm="0" :md="0" :lg="0" :xl="6">
               <a-input-search placeholder="搜索文章" style="width: 200px" @search="onSearch" />
@@ -26,7 +26,7 @@
                 </a-menu-item>
               </a-menu>
             </a-col>
-            <a-col :xs="0" :sm="10" :md="10" :lg="8" :xl="6">
+            <a-col :xs="0" :sm="0" :md="10" :lg="8" :xl="6">
               <div v-if="!logined">
                 <a-button type="primary" @click="showModallogin">登录</a-button>
                 <a-button style="marginLeft: 20px" @click="showModalreg">注册</a-button>

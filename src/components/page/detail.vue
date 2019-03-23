@@ -1,6 +1,9 @@
 <template>
   <div class="contentRight">
     <div class="detail">
+      <a-card :hoverable="true" class="cards" v-if="!loading">
+        <a-skeleton active :paragraph="{rows: 20}"/>
+      </a-card>
       <h2>{{ detailData.title }}</h2>
       <div class="tips">
         <a-icon type="calendar" /> Posted on <span>{{ detailData.postDate }}</span>
@@ -14,11 +17,9 @@
         <a-icon type="message" /><span style="margin-left: 10px">{{ detailData.discuss }}</span>
         <a-divider />
       </div>
-      <a-spin :spinning="spinning" :delay="delayTime">
-        <div class="artContent">
-          <p v-html='content'> </p>
-        </div>
-      </a-spin>
+      <div class="artContent">
+        <p v-html='content'> </p>
+      </div>
     </div>
     <div class="sideMenu">
       <a-divider orientation="left">预览</a-divider>
@@ -46,8 +47,7 @@
     data() {
       return {
         content: '',
-        spinning: true,
-        delayTime: 500,
+        loading: false,
         detailData: {
           postDate: '',
           category: '',
@@ -64,6 +64,7 @@
       $route(to,from){
         this.detail()
         document.documentElement.scrollTop = 0
+        this.loading = false
       }
     },
     methods: {
@@ -78,8 +79,8 @@
           if (data.code === 100) {
             this.detailData = data.data
             this.content = converter.makeHtml(data.data.content)
-            this.spinning = false
           }
+          this.loading = true
         })
       }
     }
@@ -109,6 +110,12 @@
   
   .detail {
     padding-right: 300px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .detail {
+      padding-right: 0;
+    }
   }
   
   .cards {

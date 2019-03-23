@@ -1,26 +1,38 @@
 <template>
   <div class="contentRight">
     <div class="card">
-      <a-spin :spinning="spinning" :delay="delayTime">
-        <a-card v-for="(key,index) in allData" :key="index" @click="detail(key.id)" :title="key.title" :hoverable="true" class="cards" :id="key.title">
-          <a href="#" slot="extra">more</a>
-          <div class="test_demo" v-html="contents(key.content)"></div>
-          <a-divider dashed/>
-          <div class="cardBottom">
-            <a-icon type="message" />
-            <span class="spans">{{ key.discuss }}</span>
-            <a-divider type="vertical" />
-            <a-icon type="tag" />
-            <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
-            <a-divider type="vertical" />
-            <a-icon type="folder" />
-            <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
-            <div style="float: right">
-              <span style="margin-left:4px">{{ key.postDate }}</span>
-            </div>
-          </div>
+      <div v-if = "!loading">
+        <a-card :hoverable="true" class="cards">
+          <a-skeleton active :paragraph="{rows: 7}"/>
         </a-card>
-      </a-spin>
+        <a-card :hoverable="true" class="cards">
+          <a-skeleton active :paragraph="{rows: 7}"/>
+        </a-card>
+        <a-card :hoverable="true" class="cards">
+          <a-skeleton active :paragraph="{rows: 7}"/>
+        </a-card>
+        <a-card :hoverable="true" class="cards">
+          <a-skeleton active :paragraph="{rows: 7}"/>
+        </a-card>
+      </div>
+      <a-card v-for="(key,index) in allData" :key="index" @click="detail(key.id)" :title="key.title" :hoverable="true" class="cards" :id="key.title">
+        <a href="#" slot="extra">more</a>
+        <div class="test_demo" v-html="contents(key.content)"></div>
+        <a-divider dashed/>
+        <div class="cardBottom">
+          <a-icon type="message" />
+          <span class="spans">{{ key.discuss }}</span>
+          <a-divider type="vertical" />
+          <a-icon type="tag" />
+          <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
+          <a-divider type="vertical" />
+          <a-icon type="folder" />
+          <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
+          <div style="float: right">
+            <span style="margin-left:4px">{{ key.postDate }}</span>
+          </div>
+        </div>
+      </a-card>
       <a-layout-footer style="text-align: center; background: white">Ant Design ©2019 Created by Ant UED</a-layout-footer>
     </div>
     <div class="sideMenu">
@@ -44,8 +56,7 @@
     data() {
       return {
         allData: [],
-        spinning: true,
-        delayTime: 500,
+        loading: false
       };
     },
     watch: {
@@ -74,6 +85,9 @@
           if (code === 100) {
             this.spinning = false
             this.allData = res.data.data
+            this.loading = true
+          }else {
+           this.loading = true
           }
         })
       },

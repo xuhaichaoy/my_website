@@ -1,7 +1,7 @@
 <template>
   <div class="contentRight">
     <div class="card">
-      <div class="sping" v-if="allData.length == 0">
+      <div class="sping" v-if="loading">
         <div>
           <a-card :hoverable="true" class="cards">
             <a-skeleton active :paragraph="{rows: 7}"/>
@@ -20,26 +20,26 @@
       <a-card
         v-for="(key,index) in allData"
         :key="index"
-        @click="detail(key.id)"
-        :title="key.title"
+        @click="detail(key.aid)"
+        :title="key.artical_title"
         :hoverable="true"
         class="cards"
-        :id="key.title"
+        :id="key.artical_title"
       >
         <a href="#" slot="extra">more</a>
-        <div class="test_demo" v-html="contents(key.content)"></div>
+        <div class="test_demo" v-html="key.htContent"></div>
         <a-divider dashed/>
         <div class="cardBottom">
           <a-icon type="message"/>
-          <span class="spans">{{ key.discuss }}</span>
+          <span class="spans">{{ key.viewCount ?  key.viewCount : 0}}</span>
           <a-divider type="vertical"/>
           <a-icon type="tag"/>
-          <a-tag color="pink" style="margin-left: 8px">{{ key.tips }}</a-tag>
+          <a-tag color="pink" style="margin-left: 8px">{{ key.tname }}</a-tag>
           <a-divider type="vertical"/>
           <a-icon type="folder"/>
-          <a-tag color="cyan" style="margin-left: 8px">{{ key.category }}</a-tag>
+          <a-tag color="cyan" style="margin-left: 8px">{{ key.category_name }}</a-tag>
           <div style="float: right">
-            <span style="margin-left:4px">{{ key.postDate }}</span>
+            <span style="margin-left:4px">{{ key.createDate }}</span>
           </div>
         </div>
       </a-card>
@@ -60,9 +60,9 @@
       <a-divider orientation="left">预览</a-divider>
       <a-anchor wrapperClass="contentRight" :offsetTop="120">
         <a-anchor-link
-          :title="key.title"
+          :title="key.artical_title"
           v-for="(key, index) in allData"
-          :href="'#' + key.title"
+          :href="'#' + key.artical_title"
           :key="index"
         />
       </a-anchor>
@@ -72,8 +72,8 @@
 
 <script>
 import api from "../../httpconfig/request";
-const showdown = require("showdown");
-const converter = new showdown.Converter();
+// const showdown = require("showdown");
+// const converter = new showdown.Converter();
 export default {
   name: "pageIndex",
   props: {
@@ -81,6 +81,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       pageSize: 10,
       current: 1,
       allData: [],
@@ -95,13 +96,13 @@ export default {
       // console.log('current', val);
     }
   },
-  computed: {
-    contents() {
-      return function(content) {
-        return converter.makeHtml(content);
-      };
-    }
-  },
+  // computed: {
+  //   contents() {
+  //     return function(content) {
+  //       return converter.makeHtml(content);
+  //     };
+  //   }
+  // },
   mounted() {
     this.getdata();
   },
@@ -114,6 +115,7 @@ export default {
       api.getArtical(params, res => {
         const data = res.data;
         if (data.code === 100) {
+          this.loading = false
           this.allData = data.data;
           this.allcount = data.count;
           this.$store.state.loading = false;
@@ -136,6 +138,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -229,4 +232,5 @@ a {
   background-color: #e6f7ff;
   padding: 30px;
 }
+
 </style>

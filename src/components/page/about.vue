@@ -25,9 +25,9 @@
     >
       <a-list-item slot="renderItem" slot-scope="item">
         <a-comment
-          :author="item.author"
+          :author="item.nickName"
           :avatar="item.image"
-          :content="item.comment"
+          :content="item.comment_content"
           :datetime="item.date"
         >
         <template slot="actions">
@@ -62,6 +62,7 @@
     </a-list>
     <a-comment>
       <a-avatar
+        icon="user"
         slot="avatar"
         :src="image"
         :alt="nickName"
@@ -86,7 +87,7 @@
 </template>
 
 <script>
-  import moment from "moment"
+  // import moment from "moment"
   import api from '../../httpconfig/request'
   export default {
     name: "about",
@@ -98,7 +99,7 @@
         likes: 0,
         dislikes: 0,
         action: null,
-        moment,
+        // moment,
         comments: [],
         submitting: false,
         value: '',
@@ -128,15 +129,8 @@
         if (!this.value) {
           return;
         }
-        let time = new Date()
-        let str = ''
-        str += time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
         let params = {
-          image: this.$store.state.LoginedUser.image,
-          artical_id: this.$store.state.LoginedUser.id,
           comment: this.value,
-          author: this.$store.state.LoginedUser.nickName,
-          date: str
         }
         this.submitting = true
         api.addComment(params, (res) => {
@@ -158,6 +152,8 @@
         api.getComment('', (res) => {
           if(res.data.code === 100) {
             this.comments = res.data.data
+            this.image = this.$store.state.LoginedUser.image
+            this.nickName = this.$store.state.LoginedUser.nickName
           }
           this.loading = true
         })

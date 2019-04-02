@@ -1,80 +1,83 @@
 <template>
   <div class="contentRight">
-    <a-divider>Categories</a-divider>
-    <template>
-        <div style="margin-top: 40px;">
-          <a-badge :count="key.numCount" v-for="(key, index) in alldata" :key = index>
-            <a-tag style = "margin-left: 30px" @click="getTips(key)" :color="getColor()">{{key.category}}</a-tag>
-          </a-badge>
-        </div>
-</template>
+    <div style="text-align: left;padding: 20px;">
+      <h3 style="text-align: left">共 {{ count }} 个</h3>
+      <a-tag style="margin: 8px" v-for="(key, index) in alldata" :key="index" @click="choose(key.tname)">{{ key.tname }} ({{key.num}})</a-tag>
+    </div>
   </div>
 </template>
 
 <script>
-  import api from '../../httpconfig/request'
-  export default {
-    name: "HelloWorld",
-    props: {
-      msg: String
+import api from "../../httpconfig/request";
+export default {
+  name: "HelloWorld",
+  props: {
+    msg: String
+  },
+  data() {
+    return {
+      alldata: [],
+      count: 0,
+      colorArr: ["pink", "red", "orange", "green", "cyan", "blue", "purple"]
+    };
+  },
+  mounted() {
+    this.getCategory();
+  },
+  methods: {
+    getColor() {
+      let num = Math.floor(Math.random() * this.colorArr.length);
+      return this.colorArr[num];
     },
-    data() {
-      return {
-        alldata: [],
-        colorArr: ["pink", "red", "orange", "green", "cyan", "blue", "purple"]
+    getTips(key) {
+      if (key.category.trim()) {
+        this.$router.push({
+          path: "/category/value=" + key.category
+        });
       }
     },
-    mounted() {
-      this.getCategory()
-    },
-    methods: {
-      getColor() {
-        let num = Math.floor(Math.random() * this.colorArr.length)
-        return this.colorArr[num]
-      },
-      getTips(key) {
-        if (key.category.trim()) {
-          this.$router.push({
-            path: "/category/value=" + key.category
-          });
+    getCategory() {
+      api.getCategory("", res => {
+        if (res.data.code === 100) {
+          this.alldata = res.data.data;
+          this.count = res.data.count
         }
-      },
-      getCategory() {
-        api.getCategory('', (res) => {
-          if (res.data.code === 100) {
-            this.alldata = res.data.data
-          }
-        })
-      }
+      });
     },
-  };
+    choose(tag) {
+      this.$router.push({
+        path: "/search/searchValue:tag=" + tag
+      });
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  
-  a {
-    color: #42b983;
-  }
-  
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+
+.contentRight {
+  width: 100%;
+  overflow: hidden;
+  padding-right: 200px;
+}
+
+@media screen and (max-width: 1200px) {
   .contentRight {
-    width: 100%;
-    overflow: hidden;
-    padding-right: 300px;
+    padding-right: 0 !important;
   }
-  
-  @media screen and (max-width: 1200px) {
-    .contentRight {
-      padding-right: 0!important;
-    }
-  }
+}
 </style>

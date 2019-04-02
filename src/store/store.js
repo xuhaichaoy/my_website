@@ -2,23 +2,22 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import cookie from 'js-cookie'
 import api from '../httpconfig/request'
-import cookie from 'js-cookie'
+// import cookie from 'js-cookie'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
     // 登录状态为没登录
     logined: false,
-    token: '',
     currentUser: {
-      bios: '海超的博客',
-      nickName: '海超',
+      bios: "Haichao.Xu's Blog",
+      nickName: 'Haichao.Xu',
       image: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      userName: '1@qq.com',
-      introduction: '前端小白一枚～',
+      // userName: '1@qq.com',
+      introduction: '未来的事无人知晓，所以才有无穷可能',
       github: 'https://github.com/xuhaichaoy',
       wechat: '',
-      id: '11'
+      // id: '11'
     },
     // 用户信息数据,目前只需要avatar 和 name,还是把username也加上吧
     LoginedUser: {},
@@ -32,16 +31,20 @@ const store = new Vuex.Store({
     },
     // 登出
     LOGOUT(state) {
-      state.logined = false
-      state.LoginedUser = {}
-      state.LoginedUser.nickName = ""
-      state.LoginedUser.github = ""
-      state.LoginedUser.image = ""
-      state.LoginedUser.userName = ""
-      state.LoginedUser.introduction = ""
-      state.LoginedUser.wechat = ""
-      state.LoginedUser.id = ""
-      cookie.set("token", '', -1)
+      api.logout('', (res) => {
+        const data = res.data
+        if(data.code === 1) {
+          state.logined = false
+          state.LoginedUser = {}
+          // state.LoginedUser.nickName = ""
+          // state.LoginedUser.github = ""
+          // state.LoginedUser.image = ""
+          // // state.LoginedUser.userName = ""
+          // state.LoginedUser.introduction = ""
+          // state.LoginedUser.wechat = ""
+          // state.LoginedUser.id = ""
+        }
+      })
     },
     GETINFO(state) {
       api.getInfo('', (res) => {

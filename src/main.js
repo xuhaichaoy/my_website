@@ -23,7 +23,7 @@ import {
   // Cascader,
   Checkbox,
   Col,
-  // DatePicker,
+  DatePicker,
   Divider,
   Dropdown,
   Form,
@@ -92,7 +92,7 @@ Vue.use(Card);
 // Vue.use(Cascader);
 Vue.use(Checkbox);
 Vue.use(Col);
-// Vue.use(DatePicker);
+Vue.use(DatePicker);
 Vue.use(Divider);
 Vue.use(Drawer);
 Vue.use(Dropdown);

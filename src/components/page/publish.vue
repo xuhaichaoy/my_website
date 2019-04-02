@@ -43,6 +43,11 @@
 </template>
 
 <script>
+const showdown = require("showdown");
+const showdownHighlight = require("showdown-highlight")
+const converter = new showdown.Converter({
+  extensions: [showdownHighlight]
+});
   import {
     CodeMirror
   } from 'vue-codemirror'
@@ -66,8 +71,7 @@
       };
     },
     mounted() {
-      // console.log(this.$store.state.LoginedUser.id)
-      if(!this.$store.state.LoginedUser.id) {
+      if(JSON.stringify(this.$store.state.LoginedUser) === '{}') {
         this.$router.push({
           path: "/index"
         })
@@ -98,12 +102,7 @@
         e.preventDefault();
         this.form.validateFields((err, values) => {
           if (!err) {
-            let time = new Date()
-            let str = ''
-            str += time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
-            values.val = this.val
-            values.postDate = str
-            values.artical_id = this.$store.state.LoginedUser.id
+            values.val = converter.makeHtml(this.val)
             api.publish(values, (res) => {
               if(res.data.data.code === 100) {
                 this.visible = false

@@ -17,6 +17,8 @@ module.exports = {
     configureWebpack: config => {
         if (isProduction) {
             config.externals = {
+                // 'vue':'Vue',
+                // 'vue-router':'VueRouter'
                 // 'Vue': 'vue',
                 // 'VueRouter': 'vueRouter',
                 // 'Vuex': 'vuex',
@@ -58,7 +60,7 @@ module.exports = {
     // // webpack-dev-server 相关配置
     devServer: {
         open: process.platform === 'darwin',
-        // host: 'localhost',
+        // host: '106.13.113.36',
         port: 8080,
         https: false,
         hotOnly: false,

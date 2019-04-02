@@ -21,6 +21,18 @@ let apiUrl = {
         return err
       });
   },
+  logout: function (params, callback) {
+    axios
+      .get("/logout", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
   getInfo: function (params, callback) {
     axios
       .get("/api/userInfo", {
@@ -136,7 +148,31 @@ let apiUrl = {
       .catch(err => {
         return err
       });
-  }
+  },
+  getDate: function (params, callback) {
+    axios
+      .get("/api/dateData", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
+  getData: function (params, callback) {
+    axios
+      .get("/api/dateDoc", {
+        params
+      })
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
 }
 
 export default apiUrl

@@ -1,30 +1,53 @@
 <template>
   <div class="contentRight">
-    <a-timeline style = "margin-left: 10px; text-align: left;margin-top: 10px">
-      <a-timeline-item color="red">
-        <a-icon slot="dot" type="clock-circle-o" style="fontSize: '16px'" />
-        Technical testing 2019-02-27
-      </a-timeline-item>
-      <a-timeline-item>Create a services site 2019-02-27</a-timeline-item>
-      <a-timeline-item>Solve initial network problems 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-      <a-timeline-item>Network problems being solved 2019-02-27</a-timeline-item>
-    </a-timeline>
+    <div style="padding: 20px;">
+      <h3 style="text-align: left">共 {{all}} 篇</h3>
+      <a-row :gutter="16">
+        <a-col :span="6" @click="choose(key.date)" v-for="(key, index) in allData" :key="index">
+          <a-card :hoverable="true" class="doccard">
+            <p style="text-align: left; font-size: 13px">{{key.date}} ({{key.num}})</p>
+          </a-card>
+        </a-col>
+      </a-row>
+    </div>
   </div>
 </template>
 <script>
+import api from "../../httpconfig/request";
 export default {
-  name: "HelloWorld",
+  name: "doc",
   props: {
     msg: String
+  },
+  data() {
+    return {
+      allData: [],
+      all: 0
+    };
+  },
+  mounted() {
+    this.getDate()
+  },
+  methods: {
+    getDate() {
+      api.getDate('', res => {
+        const code = res.data.code;
+        if (code === 100) {
+          this.allData = res.data.data
+          this.all = res.data.count
+          this.spinning = false;
+          this.allData = res.data.data;
+          this.loading = true;
+        } else {
+          this.loading = true;
+        }
+      });
+    },
+    choose(date) {
+      this.$router.push({
+        path: "/search/searchValue:date=" + date
+      });
+    }
   }
 };
 </script>
@@ -38,38 +61,14 @@ ul {
 a {
   color: #42b983;
 }
-.contentRight {
-  width: 100%;
-  overflow: hidden;
-}
-.card {
-  padding-right: 300px;
-}
-.cards {
+.doccard {
+  height: 120px;
   margin-top: 10px;
 }
-.cards:hover {
-  background: rgb(238, 250, 254);
+.doccard:hover {
+  color: rgb(110, 10, 7);
 }
-.sideMenu {
-  text-align: left;
-  width: 300px;
-  position: fixed;
-  top: 110px;
-  right: 0px;
-  padding-left: 10px;
-  padding-right: 30px;
-}
-.sideMenu > ul > li {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: 28px;
-}
-@media screen and (max-width: 1600px) {
-  .card {
-    padding-right: 0!important;
-  }
+.contentRight {
+  padding-right: 200px;
 }
 </style>

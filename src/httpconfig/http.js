@@ -5,7 +5,7 @@ import Axios from 'axios'
 import apiURL from './api.js'
 import Qs from 'qs'
 
-import cookie from 'js-cookie'
+// import cookie from 'js-cookie'
 
 // axios默认配置
 Axios.defaults.timeout = 10000 // 超时时间
@@ -25,11 +25,12 @@ Axios.interceptors.request.use(
     //config.data = JSON.stringify(config.data)  
     // config.headers['Content-Type'] = 'application/json;charset=UTF-8'
     //判断是否存在ticket，如果存在的话，则每个http header都加上ticket
-    if (cookie.get("token")) {
-      //用户每次操作，都将cookie设置成2小时
-      cookie.set("token", cookie.get("token"), 1 / 12)
-      config.headers.token = cookie.get("token")
-    }
+    // if (cookie.get("token")) {
+    //   //用户每次操作，都将cookie设置成2小时
+    //   cookie.set("token", cookie.get("token"), 1 / 12)
+    //   config.headers.token = cookie.get("token")
+    // }
+    config.withCredentials = true
 
     return config
   },

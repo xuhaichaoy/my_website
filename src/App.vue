@@ -26,4 +26,7 @@ export default {
   color: #2c3e50;
   user-select: none;
 }
+html {
+  overflow-y: scroll;
+}
 </style>

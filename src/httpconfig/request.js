@@ -173,6 +173,16 @@ let apiUrl = {
         return err
       });
   },
+  setinfo: function (params, callback) {
+    axios
+      .post("/api/settingInfo", params)
+      .then(res => {
+        callback(res)
+      })
+      .catch(err => {
+        return err
+      });
+  },
 }
 
 export default apiUrl

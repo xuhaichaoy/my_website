@@ -202,18 +202,7 @@
                     <img alt="example" style="width: 100%" :src="previewImage">
                   </a-modal>
                 </p>
-                <a-form :layout="formLayout">
-                  <!-- <a-form-item
-                    label="Form Layout"
-                    :label-col="formItemLayout.labelCol"
-                    :wrapper-col="formItemLayout.wrapperCol"
-                  >
-                    <a-radio-group default-value="horizontal" @change="handleFormLayoutChange">
-                      <a-radio-button value="horizontal">Horizontal</a-radio-button>
-                      <a-radio-button value="vertical">Vertical</a-radio-button>
-                      <a-radio-button value="inline">Inline</a-radio-button>
-                    </a-radio-group>
-                  </a-form-item>-->
+                <a-form :layout="formLayout" @submit="handleSubmit" :form="form">
                   <a-form-item
                     label="用户昵称"
                     :label-col="formItemLayout.labelCol"
@@ -221,9 +210,14 @@
                     style="margin-bottom: 6px"
                   >
                     <a-input
+                      v-decorator="[
+                        'nickname',
+                        {
+                          initialValue: currentUser.nickName
+                        }
+                      ]"
                       size="small"
                       placeholder="Basic usage"
-                      :value="currentUser.nickName"
                       style="width: 100%; border: none"
                     />
                   </a-form-item>
@@ -234,19 +228,16 @@
                     style="margin-bottom: 6px"
                   >
                     <a-input
+                      v-decorator="[
+                        'github',
+                        {
+                          initialValue: currentUser.github
+                        }
+                      ]"
                       size="small"
-                      placeholder="Basic usage"
-                      :value="currentUser.nickName"
+                      placeholder="github"
                       style="width: 100%; border: none"
                     />
-                  </a-form-item>
-                  <a-form-item
-                    label="出生年月"
-                    :label-col="formItemLayout.labelCol"
-                    :wrapper-col="formItemLayout.wrapperCol"
-                    style="margin-bottom: 6px"
-                  >
-                    <a-date-picker @change="onChange" size="small" style="width: 100%; border: none"/>
                   </a-form-item>
                   <a-form-item
                     label="个人简介"
@@ -255,15 +246,19 @@
                     style="margin-bottom: 6px"
                   >
                     <a-textarea
+                      v-decorator="[
+                        'introduction',
+                        {
+                          initialValue: currentUser.introduction
+                        }
+                      ]"
                       placeholder="Autosize height with minimum and maximum number of lines"
                       :autosize="{ minRows: 2, maxRows: 10 }"
-                      :value="currentUser.introduction"
                       style="width: 100%;border:none"
                     />
                   </a-form-item>
-                </a-form>
-                <div
-                  :style="{
+                  <div
+                    :style="{
                     position: 'absolute',
                     left: 0,
                     bottom: 0,
@@ -273,9 +268,10 @@
                     background: '#fff',
                     textAlign: 'right',
                   }"
-                >
-                  <a-button type="primary" block @click="editInfo">保存个人信息</a-button>
-                </div>
+                  >
+                    <a-button type="primary" html-type="submit" block>保存个人信息</a-button>
+                  </div>
+                </a-form>
               </a-drawer>
             </a-col>
           </a-row>
@@ -330,6 +326,9 @@ import api from "../../httpconfig/request";
 export default {
   data() {
     return {
+      userintroduction: "",
+      usergithub: "",
+      usernickname: "",
       formLayout: "horizontal",
       showFlag: false,
       userFlag: false,
@@ -348,7 +347,7 @@ export default {
         introduction: "",
         github: "",
         wechat: "",
-        id: ""
+        id: "",
       },
       collapsed: false,
       previewVisible: false,
@@ -413,8 +412,21 @@ export default {
     }
   },
   methods: {
-    onChange(date, dateString) {
-      console.log(date, dateString);
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          api.setinfo(values, res => {
+            const { code, msg } = res.data.data;
+            if (code === 100) {
+              this.$message.success('设置成功！！！')
+              this.visible = false;
+            } else {
+              this.$message.error(msg);
+            }
+          });
+        }
+      });
     },
     showUser() {
       if (JSON.stringify(this.$store.state.LoginedUser) === "{}") {
@@ -569,9 +581,6 @@ export default {
         path: "/publish"
       });
     },
-    editInfo() {
-      console.log("edit");
-    }
   }
 };
 </script>

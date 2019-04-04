@@ -50,6 +50,7 @@
           @showSizeChange="onShowSizeChange"
           :total="allcount"
           v-model="current"
+          @change="change"
         />
       </div>
       <!-- <a-layout-footer
@@ -115,6 +116,8 @@ export default {
       api.getArtical(params, res => {
         const data = res.data;
         if (data.code === 100) {
+          document.body.scrollTop = 0
+          document.documentElement.scrollTop = 0
           this.loading = false
           this.allData = data.data;
           this.allcount = data.count;
@@ -129,6 +132,11 @@ export default {
     },
     onShowSizeChange(current, pageSize) {
       this.current = current;
+      this.pageSize = pageSize;
+      this.getdata();
+    },
+    change(page, pageSize) {
+      this.current = page;
       this.pageSize = pageSize;
       this.getdata();
     }

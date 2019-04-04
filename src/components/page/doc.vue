@@ -3,7 +3,7 @@
     <div style="padding: 20px;">
       <h3 style="text-align: left">共 {{all}} 篇</h3>
       <a-row :gutter="16">
-        <a-col :span="6" @click="choose(key.date)" v-for="(key, index) in allData" :key="index">
+        <a-col :xs="12" :sm="12" :md="8" :lg="8" :xl="6" :xll="6" @click="choose(key.date)" v-for="(key, index) in allData" :key="index">
           <a-card :hoverable="true" class="doccard">
             <p style="text-align: left; font-size: 13px">{{key.date}} ({{key.num}})</p>
           </a-card>
@@ -69,6 +69,5 @@ a {
   color: rgb(110, 10, 7);
 }
 .contentRight {
-  padding-right: 200px;
 }
 </style>

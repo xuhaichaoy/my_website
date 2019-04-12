@@ -120,6 +120,7 @@ export default {
           document.documentElement.scrollTop = 0
           this.loading = false
           this.allData = data.data;
+          console.log(this.allData)
           this.allcount = data.count;
           this.$store.state.loading = false;
         }

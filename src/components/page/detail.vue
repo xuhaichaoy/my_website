@@ -4,9 +4,9 @@
       <a-card :hoverable="true" class="cards" v-if="!loading">
         <a-skeleton active :paragraph="{rows: 20}"/>
       </a-card>
-      <h2 style="padding-left: 1%">{{ detailData.artical_title }}</h2>
+      <h2 style="">{{ detailData.artical_title }}</h2>
       <div class="tips">
-        <a-icon type="calendar" style="padding-left: 1%"/> Posted on <span>{{ detailData.createDate }}</span>
+        <a-icon type="calendar" style=""/> Posted on <span>{{ detailData.createDate }}</span>
         <a-divider type="vertical" />
         <a-icon type="tag" />
         <a-tag color="pink" style="margin-left: 10px">{{ detailData.tname }}</a-tag>
@@ -100,7 +100,7 @@
   
   .detail {
     /* padding-right: 300px; */
-    text-align: left;
+    text-align: center;
   }
 
   /* @media screen and (max-width: 1200px) {
@@ -171,7 +171,7 @@
   .artContent {
     text-align: left;
     padding-left: 2%;
-    padding-right: 5%;
+    padding-right: 2%;
   }
   
   .spin-content {

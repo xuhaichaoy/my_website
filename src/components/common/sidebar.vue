@@ -169,7 +169,7 @@ export default {
   /* height: calc(100vh - 105px); */
   /* overflow: auto; */
   padding-left: 40px !important;
-  padding-right: 20px !important;
+  padding-right: 60px !important;
   /* box-sizing: border-box; */
 }
 @media screen and (max-width: 1200px) {

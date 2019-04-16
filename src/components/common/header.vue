@@ -171,7 +171,7 @@
                 </div>
               </div>
               <div v-if="logined">
-                <a-icon type="file-add" class="bell" @click="publish"/>
+                <a-icon type="file-add" class="bell" @click="publish" v-if="admin"/>
                 <a-icon type="bell" class="bell" @click="bell"/>
                 <a-icon type="setting" class="setting" @click="setting"/>
                 <a-icon type="logout" class="setting" @click="logout"/>
@@ -364,6 +364,9 @@ export default {
     };
   },
   computed: {
+    admin() {
+      return this.$store.state.LoginedUser.admin
+    },
     logined() {
       return this.$store.state.logined;
     },

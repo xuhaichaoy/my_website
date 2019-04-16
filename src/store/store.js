@@ -9,6 +9,7 @@ const store = new Vuex.Store({
   state: {
     // 登录状态为没登录
     logined: false,
+    admin: 0,
     currentUser: {
       bios: "Haichao.Xu's Blog",
       nickName: 'Haichao.Xu',
@@ -52,9 +53,11 @@ const store = new Vuex.Store({
           const {data} = res.data
           state.logined = true
           state.LoginedUser = data
+          state.admin = data.admin
         }else {
           state.logined = false
           state.LoginedUser = {}
+          state.admin = 0
         }
       })
     }
